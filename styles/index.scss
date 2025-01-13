@@ -1,0 +1,489 @@
+@import "shared/colors";
+@import "shared/wrapper";
+@import "shared/text";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.headerSection {
+  @extend .section;
+  background-color: $primary;
+}
+
+.header {
+  @extend .wrapper;
+
+  &-navMenu {
+    @extend .textSmall;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    list-style: none;
+    gap: 50px;
+    height: 80px;
+
+    a {
+      color: $white;
+      text-decoration: none;
+    }
+
+  }
+
+  &-title {
+    @extend .h1;
+    color: $accentLight;
+  }
+
+  &-search {
+    padding: 24px 0 80px 0;
+
+    &-searchType {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+
+      input[type="radio"] {
+        display: none;
+
+        & + label {
+
+          @extend .textSmall;
+          font-weight: 500;
+
+          display: flex;
+          background-color: $transparentWhite;
+          color: $white;
+          padding: 4px 18px;
+          border-radius: 20px;
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          span {
+            background-color: rgb(114, 182, 43);
+            color: white;
+            padding: 0 8px;
+            border-radius: 12px;
+            box-sizing: border-box;
+            margin-left: 8px;
+            margin-right: -12px;
+
+          }
+        }
+
+        &:checked + label {
+          color: black;
+          background-color: $white;
+        }
+      }
+    }
+
+    &-input {
+      margin-top: 12px;
+      @extend .text;
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      height: 80px;
+
+      &-fields {
+        position: relative;
+        border-radius: 5px;
+        justify-content: stretch;
+        align-items: stretch;
+        display: flex;
+        flex-direction: row;
+        background-color: $gray;
+        gap: 1px;
+        box-shadow: 1px 0 15px 0 rgba(0, 0, 0, 0.2);
+
+        input {
+          position: relative;
+          width: 100%;
+          top: 0;
+          background-color: transparent;
+          @extend .text;
+          border: none;
+          padding: 0;
+          margin: 0;
+          transition: 50ms ease-in-out;
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          &:focus {
+            outline: none;
+            border: black;
+            box-shadow: none;
+          }
+        }
+
+        label {
+          position: relative;
+          top: 3px;
+          @extend .textSmall;
+          color: $gray;
+          padding: 0;
+          margin: 0;
+          line-height: 16px;
+          transition: 50ms ease-in-out;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        input[readonly] {
+          caret-color: transparent;
+        }
+
+        input:placeholder-shown {
+          top: -8px;
+
+          & + label {
+            top: 24px;
+            @extend .text;
+          }
+        }
+
+
+        &-from {
+          box-sizing: border-box;
+          position: relative;
+          display: inline-flex;
+          flex-direction: column-reverse;
+          background-color: $white;
+          border-radius: 5px 0 0 5px;
+          padding: 16px;
+
+          &:focus-within, &-focused {
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 16px 0 $selection;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        &-to {
+          @extend .header-search-input-fields-from;
+          border-radius: 0;
+
+          &:focus-within, &-focused {
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 16px 0 $selection;
+          }
+        }
+
+        &-calendar {
+          display: flex;
+          position: relative;
+          flex-direction: row;
+          background-color: $white;
+          justify-content: center;
+          z-index: 8;
+
+          &-focused {
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 16px 0px $selection;
+          }
+
+          &-from, &-to {
+            @extend .header-search-input-fields-to;
+            flex-direction: row;
+
+            &:focus-within {
+              box-shadow: none;
+              z-index: 0;
+            }
+
+            div {
+              display: flex;
+              flex-direction: column-reverse;
+            }
+
+            img {
+              position: relative;
+              top: 14px;
+              height: 20px;
+            }
+          }
+
+          &-image {
+            margin: 0 -2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $white;
+          }
+
+          &-divider {
+            position: relative;
+            top: 27px;
+            width: 1px;
+            margin: -2px;
+            height: 30px;
+            background-color: $gray;
+            z-index: 2;
+          }
+        }
+
+        &-details {
+          @extend .header-search-input-fields-from;
+          border-radius: 0 5px 5px 0;
+        }
+      }
+
+      &-submit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+        @extend .text;
+        font-weight: bold;
+        background-color: $accent;
+        margin-left: 10px;
+        width: 130px;
+        border: none;
+        border-radius: 5px;
+        color: $white;
+        box-shadow: 1px 0 15px 0 rgba(0, 0, 0, 0.3);
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &:active {
+          box-shadow: 1px 0 10px 0 rgba(0, 0, 0, 0.3);
+          scale: 0.99;
+        }
+      }
+
+    }
+
+    &-multiplePoints {
+      align-items: center;
+      padding: 12px 0;
+      color: $white;
+      @extend .textSmall;
+
+      p::before {
+        transform: translateY(2px);
+        margin-right: 8px;
+        content: "";
+        display: inline-block;
+        height: 20px;
+        width: 20px;
+        background-image: url('https://www.svgrepo.com/show/131472/points.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        filter: invert(1);
+      }
+    }
+
+  }
+
+}
+
+.headerModal {
+
+  &-cityPicker {
+    display: none;
+    width: 40%;
+    position: absolute;
+    background-color: $white;
+    border-radius: 5px;
+    top: 100px;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
+    padding: 16px 0;
+
+    &-picked {
+      display: none;
+
+      &-title {
+        @extend .text;
+        font-weight: bold;
+        padding: 0 24px;
+      }
+
+      &-city {
+        @extend .text;
+        padding: 8px 24px;
+        background-color: $selectedListItem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button {
+          background-color: transparent;
+          border: none;
+          padding: 0;
+          content: "";
+          display: inline-block;
+          height: 25px;
+          width: 25px;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          filter: invert(0);
+          background-image: url("https://www.svgrepo.com/show/521590/cross.svg");
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        &-name {
+          flex-grow: 1;
+
+          &::before {
+            transform: translateY(2px);
+            margin-right: 8px;
+            content: "";
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            filter: invert(0);
+            background-image: url("https://www.svgrepo.com/show/430441/marker-line-map.svg")
+          }
+        }
+      }
+    }
+
+    &-cityList {
+      &-title {
+        @extend .text;
+        font-weight: bold;
+        padding: 0 24px;
+      }
+
+      &-item {
+        @extend .text;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 8px 24px;
+
+        &:hover {
+          background-color: $gray;
+        }
+
+        &-name {
+          &::before {
+            transform: translateY(2px);
+            margin-right: 8px;
+            content: "";
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            filter: invert(0);
+            background-image: url("https://www.svgrepo.com/show/430441/marker-line-map.svg")
+          }
+        }
+      }
+    }
+  }
+
+  &-datePicker {
+    @extend .text;
+    position: absolute;
+    width: 400px;
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
+    gap: 0;
+    top: 100px;
+    left: 16px;
+    background-color: $white;
+    display: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 16px 24px;
+
+    &-pages {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+
+      button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background-color: transparent;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      span {
+        @extend .textBig;
+      }
+    }
+
+    &-daysTitle {
+      display: flex;
+      width: 100%;
+      @extend .text;
+      font-weight: bold;
+
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+
+    &-days {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      &-inactive {
+        color: $gray
+      }
+
+      &-chosen {
+        background-color: $accent;
+        color: $white;
+        border-radius: 5px;
+        position: relative;
+        scale: 1.05;
+      }
+
+      &-between {
+        background-color: $accentLight;
+      }
+
+      div {
+        display: flex;
+        justify-content: center;
+        width: calc(100% / 7 - 24px);
+        padding: 12px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

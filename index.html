@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Kassa</title>
+    <link rel="stylesheet" href="./styles/index.css">
+    <script src="./scripts/index.js" defer></script>
+</head>
+<body>
+
+<header class="headerSection">
+    <div class="header">
+        <div>
+            <ul class="header-navMenu">
+                <li><a href="">Корпоративным клиентам</a></li>
+                <li id="header-type"><a href="">Авиабилеты</a></li>
+                <li id="header-help"><a href="">Справка</a></li>
+                <li id="header-language"><a href="">Русский</a></li>
+                <!--todo добавить иконку для языка и стрелку вниз для множественного выбора-->
+            </ul>
+        </div>
+        <div class="header-title"><a>Лучшие авиабилеты по самым низким ценам</a></div>
+        <div class="header-search">
+            <div class="header-search-searchType">
+                <input type="radio" name="searchType" id="avia" value="avia" class="header-search-type" checked/>
+                <label for="avia" class="header-search-type-item">Авиабилеты</label>
+
+                <input type="radio" name="searchType" id="railway" value="railway" class="header-search-type"/>
+                <label for="railway" class="header-search-type-item">Ж/д билеты</label>
+
+                <input type="radio" name="searchType" id="bus" value="bus" class="header-search-type"/>
+                <label for="bus" class="header-search-type-item">Автобусы</label>
+
+                <input type="radio" name="searchType" id="hotels" value="hotels" class="header-search-type"/>
+                <label for="hotels" class="header-search-type-item">Отели<span>-60%</span></label>
+
+                <input type="radio" name="searchType" id="insurance" value="insurance" class="header-search-type"/>
+                <label for="insurance" class="header-search-type-item">Страхование</label>
+            </div>
+            <div class="header-search-input">
+                <div class="header-search-input-fields">
+                    <div class="headerModal-cityPicker">
+                        <div class="headerModal-cityPicker-picked">
+                            <div class="headerModal-cityPicker-picked-title">Выбранный город</div>
+                            <div class="headerModal-cityPicker-picked-city"></div>
+                        </div>
+                        <div class="headerModal-cityPicker-cityList">
+                            <div class="headerModal-cityPicker-cityList-item"></div>
+                        </div>
+                    </div>
+                    <div class="header-search-input-fields-from">
+                        <input type="text" value="Варшава" name="cityFrom" id="cityFrom"
+                               class="header-search-input-fields-from-value" placeholder=""/>
+                        <label for="cityFrom" class="header-search-input-fields-from-label">Откуда</label>
+                    </div>
+                    <div class="header-search-input-fields-to">
+                        <input type="text" value="" name="cityTo" id="cityTo"
+                               class="header-search-input-fields-to-value" placeholder=""/>
+                        <label class="header-search-input-fields-to-label" for="cityTo">Куда</label>
+                    </div>
+                    <div class="header-search-input-fields-calendar">
+                        <div class="header-search-input-fields-calendar-from">
+                            <div>
+                                <input type="text" id="dateFrom" class="header-search-input-fields-calendar-from-value"
+                                       placeholder="" readonly/>
+                                <label class="header-search-input-fields-calendar-from-label"
+                                       for="dateFrom">Туда</label>
+                            </div>
+                        </div>
+                        <div class="header-search-input-fields-calendar-divider"></div>
+                        <div class="header-search-input-fields-calendar-to">
+                            <div>
+                                <input type="text" id="dateTo" class="header-search-input-fields-calendar-to-value"
+                                       placeholder="" readonly/>
+                                <label class="header-search-input-fields-calendar-to-label" for="dateTo">Обратно</label>
+                            </div>
+                            <img src="https://www.svgrepo.com/show/524350/calendar.svg" alt="Выбрать дату"/>
+                        </div>
+                        <div class="headerModal-datePicker">
+                            <div class="headerModal-datePicker-pages">
+                                <button type="button" id="prevMonthPage">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="arcs" style="transform: scaleX(-1)"><path d="M9 18l6-6-6-6"></path></svg>
+                                </button>
+                                <span id="datePicker-month"></span>
+                                <button type="button" id="nextMonthPage">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="arcs"><path d="M9 18l6-6-6-6"></path></svg>
+                                </button>
+                            </div>
+                            <div class="headerModal-datePicker-daysTitle" id="datePicker-daysTitle"></div>
+                            <div class="headerModal-datePicker-days" id="datePicker-days"></div>
+                        </div>
+                    </div>
+                    <div class="header-search-input-fields-details">
+                        <input type="text" class="header-search-input-fields-details-" placeholder="" id="details"
+                               value="1 пассажир, любой"/>
+                        <label class="header-search-input-fields-details-label" for="details">Пассажиры, класс</label>
+                    </div>
+                </div>
+                <button class="header-search-input-submit" type="submit">Найти</button>
+            </div>
+            <div class="header-search-multiplePoints">
+                <p><a>Сложный маршрут</a></p>
+            </div>
+        </div>
+    </div>
+</header>
+
+</body>
+</html>
