@@ -1,0 +1,595 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+.wrapper, .header {
+  width: 1170px;
+  margin: 0 auto;
+}
+@media (max-width: 1440px) {
+  .wrapper, .header {
+    max-width: 1170px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.section, .headerSection {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.h1, .header-title {
+  font-family: "Roboto", serif;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 56px;
+}
+
+.h2 {
+  font-family: "Roboto", serif;
+  font-weight: 800;
+  font-size: 56px;
+  line-height: 64px;
+  letter-spacing: -1px;
+  text-transform: capitalize;
+}
+
+.h3 {
+  font-family: "Roboto", serif;
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: 0;
+}
+
+.h4 {
+  font-family: "Roboto", serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-transform: capitalize;
+}
+
+.h5 {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.label {
+  font-family: "Roboto", serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0px;
+}
+
+.textBig, .headerModal-datePicker-pages span {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0;
+}
+
+.text, .headerModal-datePicker-daysTitle, .headerModal-datePicker, .headerModal-cityPicker-cityList-item, .headerModal-cityPicker-cityList-title, .headerModal-cityPicker-picked-city, .headerModal-cityPicker-picked-title, .header-search-input-submit, .header-search-input-fields input:placeholder-shown + label, .header-search-input-fields input, .header-search-input {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  letter-spacing: 0;
+}
+
+.textSmall, .headerModal-details-class input[type=radio] + label, .header-search-multiplePoints, .header-search-input-fields label, .header-search-searchType input[type=radio] + label, .header-navMenu {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.buttonText {
+  font-family: "Roboto", serif;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  cursor: pointer;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.headerSection {
+  background-color: #6e36f7;
+}
+
+.header-navMenu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+  list-style: none;
+  gap: 50px;
+  height: 80px;
+}
+.header-navMenu a {
+  color: #ffffff;
+  text-decoration: none;
+}
+.header-title {
+  color: #ffaabc;
+}
+.header-search {
+  padding: 24px 0 80px 0;
+}
+.header-search-searchType {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.header-search-searchType input[type=radio] {
+  display: none;
+}
+.header-search-searchType input[type=radio] + label {
+  font-weight: 500;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 4px 18px;
+  border-radius: 20px;
+}
+.header-search-searchType input[type=radio] + label:hover {
+  cursor: pointer;
+}
+.header-search-searchType input[type=radio] + label span {
+  background-color: rgb(114, 182, 43);
+  color: white;
+  padding: 0 8px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  margin-left: 8px;
+  margin-right: -12px;
+}
+.header-search-searchType input[type=radio]:checked + label {
+  color: black;
+  background-color: #ffffff;
+}
+.header-search-input {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 80px;
+}
+.header-search-input-fields {
+  position: relative;
+  border-radius: 5px;
+  justify-content: stretch;
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  background-color: #a8afb4;
+  gap: 1px;
+  box-shadow: 1px 0 15px 0 rgba(0, 0, 0, 0.2);
+}
+.header-search-input-fields input {
+  position: relative;
+  width: 100%;
+  top: 0;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  transition: 50ms ease-in-out;
+}
+.header-search-input-fields input:hover {
+  cursor: pointer;
+}
+.header-search-input-fields input:focus {
+  outline: none;
+  border: black;
+  box-shadow: none;
+}
+.header-search-input-fields label {
+  position: relative;
+  top: 3px;
+  color: #a8afb4;
+  padding: 0;
+  margin: 0;
+  line-height: 16px;
+  transition: 50ms ease-in-out;
+}
+.header-search-input-fields label:hover {
+  cursor: pointer;
+}
+.header-search-input-fields input[readonly] {
+  caret-color: transparent;
+}
+.header-search-input-fields input:placeholder-shown {
+  top: -8px;
+}
+.header-search-input-fields input:placeholder-shown + label {
+  top: 24px;
+}
+.header-search-input-fields-from, .header-search-input-fields-details, .header-search-input-fields-to, .header-search-input-fields-calendar-from, .header-search-input-fields-calendar-to {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column-reverse;
+  background-color: #ffffff;
+  border-radius: 5px 0 0 5px;
+  padding: 16px;
+}
+.header-search-input-fields-from:focus-within, .header-search-input-fields-details:focus-within, .header-search-input-fields-to:focus-within, .header-search-input-fields-calendar-from:focus-within, .header-search-input-fields-calendar-to:focus-within, .header-search-input-fields-from-focused {
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 0 16px 0 rgb(69, 152, 248);
+}
+.header-search-input-fields-from:hover, .header-search-input-fields-details:hover, .header-search-input-fields-to:hover, .header-search-input-fields-calendar-from:hover, .header-search-input-fields-calendar-to:hover {
+  cursor: pointer;
+}
+.header-search-input-fields-to, .header-search-input-fields-calendar-from, .header-search-input-fields-calendar-to {
+  border-radius: 0;
+}
+.header-search-input-fields-to:focus-within, .header-search-input-fields-calendar-from:focus-within, .header-search-input-fields-calendar-to:focus-within, .header-search-input-fields-to-focused {
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 0 16px 0 rgb(69, 152, 248);
+}
+.header-search-input-fields-calendar {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  background-color: #ffffff;
+  justify-content: center;
+  z-index: 8;
+}
+.header-search-input-fields-calendar-focused {
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 0 16px 0 rgb(69, 152, 248);
+}
+.header-search-input-fields-calendar-from, .header-search-input-fields-calendar-to {
+  flex-direction: row;
+}
+.header-search-input-fields-calendar-from:focus-within, .header-search-input-fields-calendar-to:focus-within {
+  box-shadow: none;
+  z-index: 0;
+}
+.header-search-input-fields-calendar-from div, .header-search-input-fields-calendar-to div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.header-search-input-fields-calendar-from img, .header-search-input-fields-calendar-to img {
+  position: relative;
+  top: 14px;
+  height: 20px;
+}
+.header-search-input-fields-calendar-image {
+  margin: 0 -2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+}
+.header-search-input-fields-calendar-divider {
+  position: relative;
+  top: 27px;
+  width: 1px;
+  margin: -2px;
+  height: 30px;
+  background-color: #a8afb4;
+  z-index: 2;
+}
+.header-search-input-fields-details {
+  border-radius: 0 5px 5px 0;
+}
+.header-search-input-fields-details-focused {
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 0 16px 0 rgb(69, 152, 248);
+}
+.header-search-input-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  font-weight: bold;
+  background-color: #ff4d4d;
+  margin-left: 10px;
+  width: 130px;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  box-shadow: 1px 0 15px 0 rgba(0, 0, 0, 0.3);
+}
+.header-search-input-submit:hover {
+  cursor: pointer;
+}
+.header-search-input-submit:active {
+  box-shadow: 1px 0 10px 0 rgba(0, 0, 0, 0.3);
+  scale: 0.99;
+}
+.header-search-multiplePoints {
+  align-items: center;
+  padding: 12px 0;
+  color: #ffffff;
+}
+.header-search-multiplePoints p::before {
+  transform: translateY(2px);
+  margin-right: 8px;
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-image: url("https://www.svgrepo.com/show/131472/points.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  filter: invert(1);
+}
+
+.headerModal-cityPicker, .headerModal-details {
+  display: none;
+  width: 40%;
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 5px;
+  top: 100px;
+  box-sizing: border-box;
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
+  padding: 16px 0;
+}
+.headerModal-cityPicker-picked {
+  display: none;
+}
+.headerModal-cityPicker-picked-title {
+  font-weight: bold;
+  padding: 0 24px;
+}
+.headerModal-cityPicker-picked-city {
+  padding: 8px 24px;
+  background-color: #eff1f4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerModal-cityPicker-picked-city button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  content: "";
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  filter: invert(0);
+  background-image: url("https://www.svgrepo.com/show/521590/cross.svg");
+}
+.headerModal-cityPicker-picked-city button:hover {
+  cursor: pointer;
+}
+.headerModal-cityPicker-picked-city-name {
+  flex-grow: 1;
+}
+.headerModal-cityPicker-picked-city-name::before {
+  transform: translateY(2px);
+  margin-right: 8px;
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  filter: invert(0);
+  background-image: url("https://www.svgrepo.com/show/430441/marker-line-map.svg");
+}
+.headerModal-cityPicker-cityList-title {
+  font-weight: bold;
+  padding: 0 24px;
+}
+.headerModal-cityPicker-cityList-item {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 8px 24px;
+}
+.headerModal-cityPicker-cityList-item:hover {
+  background-color: #a8afb4;
+}
+.headerModal-cityPicker-cityList-item-name::before {
+  transform: translateY(2px);
+  margin-right: 8px;
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  filter: invert(0);
+  background-image: url("https://www.svgrepo.com/show/430441/marker-line-map.svg");
+}
+.headerModal-datePicker {
+  position: absolute;
+  width: 400px;
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
+  gap: 0;
+  top: 100px;
+  left: 16px;
+  background-color: #ffffff;
+  display: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 16px 24px;
+}
+.headerModal-datePicker-pages {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.headerModal-datePicker-pages button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+}
+.headerModal-datePicker-pages button:hover {
+  cursor: pointer;
+}
+.headerModal-datePicker-daysTitle {
+  display: flex;
+  width: 100%;
+  font-weight: bold;
+}
+.headerModal-datePicker-daysTitle div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.headerModal-datePicker-days {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.headerModal-datePicker-days-inactive {
+  color: #a8afb4;
+}
+.headerModal-datePicker-days-chosen {
+  background-color: #ff4d4d;
+  color: #ffffff;
+  border-radius: 5px;
+  position: relative;
+  scale: 1.05;
+}
+.headerModal-datePicker-days-between {
+  background-color: #ffaabc;
+}
+.headerModal-datePicker-days div {
+  display: flex;
+  justify-content: center;
+  width: calc(14.2857142857% - 24px);
+  padding: 12px;
+}
+.headerModal-datePicker-days div:hover {
+  cursor: pointer;
+}
+.headerModal-details {
+  width: 400px;
+  display: none;
+  flex-direction: column;
+  right: 0;
+}
+.headerModal-details:hover {
+  cursor: default;
+}
+.headerModal-details p {
+  color: #a8afb4;
+  padding: 0 24px;
+}
+.headerModal-details-passengers {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24px;
+  align-items: center;
+}
+.headerModal-details-passengers button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 10px;
+  border: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 62%;
+}
+.headerModal-details-passengers button:hover {
+  cursor: pointer;
+}
+.headerModal-details-passengers button.plus {
+  background-image: url("https://www.svgrepo.com/show/532997/plus-large.svg");
+}
+.headerModal-details-passengers button.minus {
+  background-image: url("https://www.svgrepo.com/show/532960/minus.svg");
+}
+.headerModal-details-passengers button.help {
+  width: 20px;
+  height: 20px;
+  margin: -5px 10px;
+}
+.headerModal-details-passengers input[type=text] {
+  flex-grow: 0;
+  width: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.headerModal-details-passengers input[type=text]:hover {
+  cursor: default;
+}
+.headerModal-details-passengers p {
+  color: inherit;
+  flex-grow: 1;
+  font-weight: bold;
+  padding: 0;
+  line-height: 28px;
+}
+.headerModal-details-passengers p span {
+  font-weight: normal;
+}
+.headerModal-details-divider {
+  background-color: #a8afb4;
+  height: 1px;
+  margin: 20px 0;
+}
+.headerModal-details-class {
+  display: flex;
+  padding: 0 24px;
+  flex-direction: inherit;
+}
+.headerModal-details-class div {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+.headerModal-details-class p {
+  color: inherit;
+  font-weight: bold;
+  padding: 0;
+}
+.headerModal-details-class input[type=radio] {
+  display: none;
+}
+.headerModal-details-class input[type=radio] + label {
+  font-weight: 500;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
+  color: inherit;
+  padding: 4px 18px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+.headerModal-details-class input[type=radio]:checked + label {
+  color: #ffffff;
+  background-color: #ff4d4d;
+}
+
+/*# sourceMappingURL=index.css.map */
