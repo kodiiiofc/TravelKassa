@@ -109,13 +109,15 @@ function getCity(name) {
     if (filteredCity) {
         return filteredCity
     } else {
-        return new City(name, null)
+        return null
     }
 }
 
 function parseDate(dateString) {
-    let list = dateString.split(".")
-    return new Date(list[2], list[1] - 1, list[0]);
+    if (dateString) {
+        let list = dateString.split(".")
+        return new Date(list[2], list[1] - 1, list[0]);
+    } else return null;
 }
 
 function sendData() {
@@ -126,8 +128,20 @@ function sendData() {
     inputForm.toDate = parseDate(dateToField.value)
 
     inputForm.details = details
+    let validData = true
 
-    console.log(inputForm)
+    for (let key in inputForm) {
+        if (!inputForm[key]) {
+            validData = false
+        }
+    }
+
+    if (!validData) {
+        alert("Одно или несколько полей пустые")
+    } else {
+        alert("Данные отправлены (см. консоль)")
+        console.log(inputForm)
+    }
 }
 
 getById("submit").addEventListener("click", () => {
