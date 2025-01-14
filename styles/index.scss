@@ -35,6 +35,11 @@
   &-title {
     @extend .h1;
     color: $accentLight;
+    padding: 60px 0 20px 0;
+
+    &:hover {
+      cursor: default;
+    }
   }
 
   &-search {

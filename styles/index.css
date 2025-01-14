@@ -129,6 +129,10 @@ a:hover {
 }
 .header-title {
   color: #ffaabc;
+  padding: 60px 0 20px 0;
+}
+.header-title:hover {
+  cursor: default;
 }
 .header-search {
   padding: 24px 0 80px 0;
