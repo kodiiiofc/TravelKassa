@@ -70,7 +70,6 @@ const daysOfWeek = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
 let date = new Date()
 let currentMonth = date.getMonth()
 let currentYear = date.getFullYear()
-let currentDay = date.getDate()
 let shownDatesCells = []
 let shownDates = []
 
@@ -93,14 +92,63 @@ const calendarContainer = document.querySelector(".header-search-input-fields-ca
 let datePickerVisible = false
 const datePicker = document.querySelector(".headerModal-datePicker");
 
+let detailsModalVisible = false
+
+const inputForm = {
+    fromPlace: null,
+    toPlace: null,
+    fromDate: null,
+    toDate: null,
+    details: null
+}
+
+function getCity(name) {
+    let filteredCity = cityList.filter(
+        city => city.name === name
+    )[0]
+    if (filteredCity) {
+        return filteredCity
+    } else {
+        return new City(name, null)
+    }
+}
+
+function parseDate(dateString) {
+    let list = dateString.split(".")
+    return new Date(list[2], list[1] - 1, list[0]);
+}
+
+function sendData() {
+    inputForm.fromPlace = getCity(fromField.querySelector('input').value)
+    inputForm.toPlace = getCity(toField.querySelector('input').value)
+
+    inputForm.fromDate = parseDate(dateFromField.value)
+    inputForm.toDate = parseDate(dateToField.value)
+
+    inputForm.details = details
+
+    console.log(inputForm)
+}
+
+getById("submit").addEventListener("click", () => {
+    sendData()
+})
+
+const details = {
+    passengers: {
+        adult: 0,
+        kids: 0,
+        babies: 0
+    },
+    class: ""
+}
+
 document.addEventListener("click", function (event) {
     if (datePicker.contains(event.target) || calendarContainer.contains(event.target)) {
         openDatePicker()
     } else {
         closeDatePicker()
     }
-
-    console.log(event.target)
 
     if (cityFromFieldContainer.contains(event.target)) {
         cityPickerInputContainer = cityFromFieldContainer
@@ -136,8 +184,108 @@ document.addEventListener("click", function (event) {
         }
     }
 
-
+    if (detailsField.contains(event.target)) {
+        detailsModalVisible = true
+        openDetailsModal()
+    } else {
+        detailsModalVisible = false
+        closeDetailsModal()
+    }
 })
+
+const detailsModal = document.querySelector(".headerModal-details")
+
+function increaseValue(input) {
+    ++input.value
+}
+
+function decreaseValue(input) {
+    --input.value
+}
+
+function updateDetails() {
+    let inputs = detailsModal.querySelectorAll("input")
+    inputs.forEach(input => {
+        if (input.type === "text") {
+            details.passengers[input.id] = +input.value;
+        } else if (input.type === "radio") {
+            if (input.checked) {
+                details.class = input.value;
+            }
+        }
+    })
+    updateDetailsInput()
+}
+
+updateDetails()
+
+function updateDetailsInput() {
+    let detailsInput = getById("details")
+    let passengers = details.passengers.adult + details.passengers.kids + details.passengers.babies
+    detailsInput.value = `${passengers} пас., ${details.class}`
+}
+
+
+const detailsButtons = detailsModal.querySelectorAll("button")
+
+detailsButtons.forEach(element => {
+    if (element.classList.contains("help")) {
+        element.addEventListener("click", function () {
+            alert("Вы нажали на кнопку помощи")
+        },)
+    } else {
+        let parentDiv = element.closest("div")
+        let input = parentDiv.querySelector("input")
+
+        if (element.classList.contains("plus")) {
+            element.addEventListener("click", function () {
+                if (details.passengers.adult + details.passengers.kids + details.passengers.babies < 9) {
+                    if (details.passengers.adult === 0 && input.id !== "adult") {
+                        alert("Невозможно купить билет детям без взрослых!")
+                    } else {
+                        increaseValue(input);
+                        details.passengers[input.id] = +input.value;
+                        updateDetailsInput()
+                    }
+                }
+            },)
+        } else if (element.classList.contains("minus")) {
+            element.addEventListener("click", function () {
+                if (details.passengers[input.id] > 0) {
+
+                    if (details.passengers.kids + details.passengers.babies > 0
+                        && input.id === "adult"
+                        && details.passengers.adult === 1) {
+                        alert("Невозможно купить билет детям без взрослых!")
+                    } else {
+                        decreaseValue(input);
+                        details.passengers[input.id] = +input.value;
+                        updateDetailsInput()
+                    }
+                }
+            },)
+        }
+
+    }
+})
+
+const detailsRadio = detailsModal.querySelectorAll("input[type='radio']")
+detailsRadio.forEach(element => {
+    element.addEventListener("change", function () {
+        details.class = element.value;
+        updateDetailsInput()
+    })
+})
+
+function openDetailsModal() {
+    detailsModal.style.display = "flex";
+    detailsField.classList.add("header-search-input-fields-details-focused");
+}
+
+function closeDetailsModal() {
+    detailsModal.style.display = "none";
+    detailsField.classList.remove("header-search-input-fields-details-focused");
+}
 
 function openDatePicker() {
     if (!datePickerVisible) {
@@ -212,7 +360,7 @@ function showMonth(year, month) {
 }
 
 let datePickerCounter = 0
-let pickedDates = []
+let pickedDateInputs = []
 let pickedDatesAll = []
 
 function formatDate(date) {
@@ -234,16 +382,16 @@ function paintDay(element) {
 
     if (datePickerCounter > 1) {
         datePickerCounter = 0;
-        pickedDates.forEach(item => {
+        pickedDateInputs.forEach(item => {
             item.classList.remove("headerModal-datePicker-days-chosen")
         });
-        pickedDates = [];
+        pickedDateInputs = [];
         pickedDatesAll.forEach(item => {
             item.classList.remove("headerModal-datePicker-days-between")
         });
         pickedDatesAll = [];
     }
-    pickedDates.push(element)
+    pickedDateInputs.push(element)
 
     switch (datePickerCounter) {
         case 0: {
@@ -270,8 +418,8 @@ function paintDay(element) {
 function colorCells() {
     if (datePickerCounter === 1) {
 
-        let firstIndex = shownDatesCells.indexOf(pickedDates[0]);
-        let lastIndex = shownDatesCells.indexOf(pickedDates[1]);
+        let firstIndex = shownDatesCells.indexOf(pickedDateInputs[0]);
+        let lastIndex = shownDatesCells.indexOf(pickedDateInputs[1]);
 
         if (firstIndex > lastIndex) {
             let temp = lastIndex;
@@ -282,7 +430,7 @@ function colorCells() {
         pickedDatesAll = shownDatesCells.slice(firstIndex, lastIndex);
 
         for (element of pickedDatesAll) {
-            if (element !== pickedDates[0] && element !== pickedDates[1])
+            if (element !== pickedDateInputs[0] && element !== pickedDateInputs[1])
                 element.classList.add("headerModal-datePicker-days-between");
         }
 
@@ -308,10 +456,10 @@ function prevMonth() {
 }
 
 function createCalendar() {
-    getById('prevMonthPage').addEventListener('click', (e) => {
+    getById('prevMonthPage').addEventListener('click', () => {
         prevMonth()
     })
-    getById('nextMonthPage').addEventListener('click', (e) => {
+    getById('nextMonthPage').addEventListener('click', () => {
         nextMonth()
     })
     let title = getById('datePicker-daysTitle');

@@ -16,7 +16,6 @@
                 <li id="header-type"><a href="">Авиабилеты</a></li>
                 <li id="header-help"><a href="">Справка</a></li>
                 <li id="header-language"><a href="">Русский</a></li>
-                <!--todo добавить иконку для языка и стрелку вниз для множественного выбора-->
             </ul>
         </div>
         <div class="header-title"><a>Лучшие авиабилеты по самым низким ценам</a></div>
@@ -79,11 +78,11 @@
                         <div class="headerModal-datePicker">
                             <div class="headerModal-datePicker-pages">
                                 <button type="button" id="prevMonthPage">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="arcs" style="transform: scaleX(-1)"><path d="M9 18l6-6-6-6"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="round" style="transform: scaleX(-1)"><path d="M9 18l6-6-6-6"></path></svg>
                                 </button>
                                 <span id="datePicker-month"></span>
                                 <button type="button" id="nextMonthPage">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="arcs"><path d="M9 18l6-6-6-6"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"></path></svg>
                                 </button>
                             </div>
                             <div class="headerModal-datePicker-daysTitle" id="datePicker-daysTitle"></div>
@@ -91,12 +90,55 @@
                         </div>
                     </div>
                     <div class="header-search-input-fields-details">
-                        <input type="text" class="header-search-input-fields-details-" placeholder="" id="details"
-                               value="1 пассажир, любой"/>
+                        <input type="text" class="header-search-input-fields-details" placeholder="" id="details"
+                               value="" readonly/>
                         <label class="header-search-input-fields-details-label" for="details">Пассажиры, класс</label>
+                        <div class="headerModal-details">
+                            <p>Максимум 9 пассажиров</p>
+                            <div class="headerModal-details-passengers">
+                                <p class="headerModal-details-passengers-text">
+                                    Взрослые<br>
+                                    <span>старше 12 лет</span>
+                                </p>
+                                <button type="button" class="minus" id="detailsAdultMinus"></button>
+                                <input type="text" id="adult" value="1" readonly/>
+                                <button type="button" class="plus" id="detailsAdultPlus"></button>
+                            </div>
+                            <div class="headerModal-details-passengers">
+                                <p class="headerModal-details-passengers-text">
+                                    Дети<br>
+                                    <span>2-12 лет</span>
+                                </p>
+                                <button type="button" class="minus" id="detailsKidsMinus"></button>
+                                <input type="text" id="kids" value="0" readonly/>
+                                <button type="button" class="plus" id="detailsKidsPlus"></button>
+                            </div>
+                            <div class="headerModal-details-passengers">
+                                <p class="headerModal-details-passengers-text">
+                                    Младенцы
+                                    <button class="help">?</button><br>
+                                    <span>до 2 лет</span>
+                                </p>
+                                <button type="button" class="minus" id="detailsBabiesMinus"></button>
+                                <input type="text" id="babies" value="0" readonly/>
+                                <button type="button" class="plus" id="detailsBabiesPlus"></button>
+                            </div>
+                            <div class="headerModal-details-divider"></div>
+                            <div class="headerModal-details-class">
+                                <p>Класс</p>
+                                <div>
+                                    <input type="radio" name="classType" id="all" value="Любой" checked>
+                                    <label for="all">Любой</label>
+                                    <input type="radio" name="classType" id="business" value="Бизнес">
+                                    <label for="business">Бизнес</label>
+                                    <input type="radio" name="classType" id="eco" value="Эконом">
+                                    <label for="eco">Эконом</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <button class="header-search-input-submit" type="submit">Найти</button>
+                <button class="header-search-input-submit" type="submit" id="submit">Найти</button>
             </div>
             <div class="header-search-multiplePoints">
                 <p><a>Сложный маршрут</a></p>

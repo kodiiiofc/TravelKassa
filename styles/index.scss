@@ -195,7 +195,7 @@
           &-focused {
             position: relative;
             z-index: 10;
-            box-shadow: 0 0 16px 0px $selection;
+            box-shadow: 0 0 16px 0 $selection;
           }
 
           &-from, &-to {
@@ -241,6 +241,13 @@
         &-details {
           @extend .header-search-input-fields-from;
           border-radius: 0 5px 5px 0;
+
+          &-focused {
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 16px 0 $selection;
+          }
+
         }
       }
 
@@ -485,5 +492,128 @@
         }
       }
     }
+  }
+
+  &-details {
+    @extend .headerModal-cityPicker;
+    width: 400px;
+    display: none;
+    flex-direction: column;
+    right: 0;
+
+    &:hover {
+      cursor: default;
+    }
+
+    p {
+      color: $gray;
+      padding: 0 24px;
+    }
+
+    &-passengers {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 24px;
+      align-items: center;
+
+      button {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin: 10px;
+        border: none;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 62%;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.plus {
+          background-image: url("https://www.svgrepo.com/show/532997/plus-large.svg");
+        }
+
+        &.minus {
+          background-image: url("https://www.svgrepo.com/show/532960/minus.svg");
+        }
+
+        &.help {
+          width: 20px;
+          height: 20px;
+          margin: -5px 10px;
+        }
+      }
+
+      input[type="text"] {
+        flex-grow: 0;
+        width: 20px;
+        text-align: center;
+        font-weight: bold;
+
+        &:hover {
+          cursor: default;
+        }
+      }
+
+      p {
+        color: inherit;
+        flex-grow: 1;
+        font-weight: bold;
+        padding: 0;
+        line-height: 28px;
+
+        span {
+          font-weight: normal;
+        }
+
+      }
+    }
+
+    &-divider {
+      background-color: $gray;
+      height: 1px;
+      margin: 20px 0;
+    }
+
+    &-class {
+      display: flex;
+      padding: 0 24px;
+      flex-direction: inherit;
+
+      div {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+      }
+
+      p {
+        color: inherit;
+        font-weight: bold;
+        padding: 0;
+      }
+
+      input[type="radio"] {
+        display: none;
+        & + label {
+          @extend .textSmall;
+          font-weight: 500;
+          display: flex;
+          background-color: $transparentWhite;
+          box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
+          color: inherit;
+          padding: 4px 18px;
+          border-radius: 20px;
+          margin-bottom: 12px;
+        }
+
+        &:checked + label {
+          color: $white;
+          background-color: $accent;
+        }
+      }
+
+    }
+
   }
 }
