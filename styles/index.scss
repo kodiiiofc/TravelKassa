@@ -2,6 +2,31 @@
 @import "shared/wrapper";
 @import "shared/text";
 
+@keyframes switch {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(-1);
+  }
+}
+@keyframes switchReversed {
+  from {
+    transform: scaleX(-1);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.switchAnimation {
+  animation: switch 200ms ease-in-out forwards;
+}
+
+.switchAnimationReverse {
+  animation: switchReversed 200ms ease-in-out forwards;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -136,6 +161,35 @@
         background-color: $gray;
         box-shadow: 1px 0 15px 0 rgba(0, 0, 0, 0.2);
 
+        #switch {
+          @extend .textBig;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          top: calc(50% - 15px);
+          left: calc(20% - 15px);
+          position: absolute;
+          height: 30px;
+          width: 30px;
+          padding: 0 1px 3px 1px;
+          border-radius: 50%;
+          border: $accent 1px solid;
+          background-color: $white;
+          color: $accent;
+          z-index: 20;
+          scale: 1;
+          rotate: 0deg;
+          transition: scale 100ms ease-in-out;
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          &:active {
+            scale: 0.92;
+          }
+        }
+
         > div {
           border-right: $gray 1px solid;
 
@@ -204,7 +258,7 @@
           flex-direction: column-reverse;
           background-color: $white;
           border-radius: 5px 0 0 5px;
-          padding: 16px;
+          padding: 16px 24px;
 
           &:focus-within, &-focused {
             position: relative;
@@ -221,7 +275,7 @@
           @extend .header-search-input-fields-from;
           border-radius: 0;
 
-          &:focus-within, &-focused {
+         &:focus-within, &-focused {
             position: relative;
             z-index: 10;
             box-shadow: 0 0 16px 0 $selection;

@@ -1,10 +1,10 @@
-const cityFromFieldContainer = document.querySelector(".header-search-input-fields-from")
-const cityToFieldContainer = document.querySelector(".header-search-input-fields-to")
+const cityFromFieldContainer = document.querySelector('.header-search-input-fields-from')
+const cityToFieldContainer = document.querySelector('.header-search-input-fields-to')
 
 let cityPickerInput = null
 let cityPickerInputContainer = null
 
-const cityPicker = document.querySelector(".headerModal-cityPicker");
+const cityPicker = document.querySelector('.headerModal-cityPicker');
 
 function City(name, code) {
     this.name = name;
@@ -12,54 +12,76 @@ function City(name, code) {
 }
 
 const cityList = [
-    new City("Варшава", "WAW"),
-    new City("Кишинев", "RMO"),
-    new City("Балице", "KRK"),
-    new City("Париж", "PAR"),
-    new City("Нью-Йорк", "NYC"),
-    new City("Лондон", "LON"),
+    new City('Варшава', 'WAW'),
+    new City('Кишинев', 'RMO'),
+    new City('Балице', 'KRK'),
+    new City('Париж', 'PAR'),
+    new City('Нью-Йорк', 'NYC'),
+    new City('Лондон', 'LON'),
 ]
 
 function closeCityPicker() {
-    document.querySelector(".headerModal-cityPicker").style.display = "none";
+    document.querySelector('.headerModal-cityPicker').style.display = 'none';
 }
 
 function openCityPicker() {
-    cityPicker.style.display = "block";
-    let pickedCity = cityPicker.querySelector(".headerModal-cityPicker-picked");
-    let pickedCityValue = cityPicker.querySelector(".headerModal-cityPicker-picked-city");
+    cityPicker.style.display = 'block';
+    let pickedCity = cityPicker.querySelector('.headerModal-cityPicker-picked');
+    let pickedCityValue = cityPicker.querySelector('.headerModal-cityPicker-picked-city');
     let value = cityPickerInput.value;
     let city = cityList.filter(city => city.name === value)[0]
     if (value && city) {
-        pickedCity.style.display = "block";
-        pickedCityValue.innerHTML = `<span class="headerModal-cityPicker-picked-city-name">${city.name}</span><span>${city.code}</span>`;
-        let clearButton = document.createElement("button");
-        clearButton.addEventListener("click", (e) => {
+        pickedCity.style.display = 'block';
+        pickedCityValue.innerHTML = `<span class='headerModal-cityPicker-picked-city-name'>${city.name}</span><span>${city.code}</span>`;
+        let clearButton = document.createElement('button');
+        clearButton.addEventListener('click', (e) => {
             e.stopPropagation()
-            cityPickerInput.value = "";
+            cityPickerInput.value = '';
             openCityPicker()
         })
         pickedCityValue.appendChild(clearButton);
     } else {
-        pickedCity.style.display = "none";
-        pickedCityValue.textContent = "";
+        pickedCity.style.display = 'none';
+        pickedCityValue.textContent = '';
     }
-    let cityListDiv = cityPicker.querySelector(".headerModal-cityPicker-cityList");
-    cityListDiv.innerHTML = "<div class=\"headerModal-cityPicker-cityList-title\">Ближайшие аэропорты</div>";
+    let cityListDiv = cityPicker.querySelector('.headerModal-cityPicker-cityList');
+    cityListDiv.innerHTML = '<div class=\'headerModal-cityPicker-cityList-title\'>Ближайшие аэропорты</div>';
 
     cityList.forEach((city, index) => {
-        let item = document.createElement("div");
-        item.classList.add("headerModal-cityPicker-cityList-item");
-        item.addEventListener("click", (e) => {
+        let item = document.createElement('div');
+        item.classList.add('headerModal-cityPicker-cityList-item');
+        item.addEventListener('click', (e) => {
             e.stopPropagation()
             cityPickerInput.value = cityList[index].name;
             openCityPicker()
         })
-        item.innerHTML = `<span class="headerModal-cityPicker-cityList-item-name">${city.name}</span><span>${city.code}</span>`;
+        item.innerHTML = `<span class='headerModal-cityPicker-cityList-item-name'>${city.name}</span><span>${city.code}</span>`;
         cityListDiv.appendChild(item);
     })
-
 }
+
+function swapCities() {
+    const cityFrom = getById("cityFrom");
+    const cityTo = getById("cityTo");
+    let temp = cityFrom.value;
+    cityFrom.value = cityTo.value;
+    cityTo.value = temp;
+}
+
+let switchButtonFlipped = false;
+const switchButton = getById('switch')
+switchButton.addEventListener('click', () => {
+    if (switchButtonFlipped) {
+        switchButton.classList.remove('switchAnimation');
+        switchButton.classList.add('switchAnimationReverse');
+        swapCities()
+    } else {
+        switchButton.classList.remove('switchAnimationReverse');
+        switchButton.classList.add('switchAnimation');
+        swapCities()
+    }
+    switchButtonFlipped = !switchButtonFlipped;
+})
 
 const months = ['Январь', 'Февраль', 'Март', 'Апрель',
     'Май', 'Июнь', 'Июль', 'Август',
@@ -84,13 +106,13 @@ fields.forEach(field => {
     })
 })
 
-const dateFromField = getById("dateFrom");
-const dateToField = getById("dateTo");
+const dateFromField = getById('dateFrom');
+const dateToField = getById('dateTo');
 
-const calendarContainer = document.querySelector(".header-search-input-fields-calendar");
+const calendarContainer = document.querySelector('.header-search-input-fields-calendar');
 
 let datePickerVisible = false
-const datePicker = document.querySelector(".headerModal-datePicker");
+const datePicker = document.querySelector('.headerModal-datePicker');
 
 let detailsModalVisible = false
 
@@ -115,7 +137,7 @@ function getCity(name) {
 
 function parseDate(dateString) {
     if (dateString) {
-        let list = dateString.split(".")
+        let list = dateString.split('.')
         return new Date(list[2], list[1] - 1, list[0]);
     } else return null;
 }
@@ -137,14 +159,14 @@ function sendData() {
     }
 
     if (!validData) {
-        alert("Одно или несколько полей пустые")
+        alert('Одно или несколько полей пустые')
     } else {
-        alert("Данные отправлены (см. консоль)")
+        alert('Данные отправлены (см. консоль)')
         console.log(inputForm)
     }
 }
 
-getById("submit").addEventListener("click", () => {
+getById('submit').addEventListener('click', () => {
     sendData()
 })
 
@@ -154,10 +176,10 @@ const details = {
         kids: 0,
         babies: 0
     },
-    class: ""
+    class: ''
 }
 
-document.addEventListener("click", function (event) {
+document.addEventListener('click', function (event) {
     if (datePicker.contains(event.target) || calendarContainer.contains(event.target)) {
         openDatePicker()
     } else {
@@ -166,12 +188,12 @@ document.addEventListener("click", function (event) {
 
     if (cityFromFieldContainer.contains(event.target)) {
         cityPickerInputContainer = cityFromFieldContainer
-        cityPickerInput = cityFromFieldContainer.querySelector("input")
+        cityPickerInput = cityFromFieldContainer.querySelector('input')
         openCityPicker()
     } else if (cityToFieldContainer.contains(event.target)) {
         cityPickerInputContainer = cityToFieldContainer
-        cityPickerInput = cityToFieldContainer.querySelector("input")
-        cityToFieldContainer.classList.add("header-search-input-fields-to-focused")
+        cityPickerInput = cityToFieldContainer.querySelector('input')
+        cityToFieldContainer.classList.add('header-search-input-fields-to-focused')
         openCityPicker()
     } else if (cityPicker.contains(event.target)) {
         openCityPicker()
@@ -182,18 +204,18 @@ document.addEventListener("click", function (event) {
 
     switch (cityPickerInputContainer) {
         case cityFromFieldContainer: {
-            cityFromFieldContainer.classList.add("header-search-input-fields-from-focused");
-            cityToFieldContainer.classList.remove("header-search-input-fields-to-focused");
+            cityFromFieldContainer.classList.add('header-search-input-fields-from-focused');
+            cityToFieldContainer.classList.remove('header-search-input-fields-to-focused');
             break;
         }
         case cityToFieldContainer: {
-            cityToFieldContainer.classList.add("header-search-input-fields-to-focused");
-            cityFromFieldContainer.classList.remove("header-search-input-fields-from-focused");
+            cityToFieldContainer.classList.add('header-search-input-fields-to-focused');
+            cityFromFieldContainer.classList.remove('header-search-input-fields-from-focused');
             break;
         }
         default: {
-            cityFromFieldContainer.classList.remove("header-search-input-fields-from-focused");
-            cityToFieldContainer.classList.remove("header-search-input-fields-to-focused");
+            cityFromFieldContainer.classList.remove('header-search-input-fields-from-focused');
+            cityToFieldContainer.classList.remove('header-search-input-fields-to-focused');
             break;
         }
     }
@@ -207,7 +229,7 @@ document.addEventListener("click", function (event) {
     }
 })
 
-const detailsModal = document.querySelector(".headerModal-details")
+const detailsModal = document.querySelector('.headerModal-details')
 
 function increaseValue(input) {
     ++input.value
@@ -218,11 +240,11 @@ function decreaseValue(input) {
 }
 
 function updateDetails() {
-    let inputs = detailsModal.querySelectorAll("input")
+    let inputs = detailsModal.querySelectorAll('input')
     inputs.forEach(input => {
-        if (input.type === "text") {
+        if (input.type === 'text') {
             details.passengers[input.id] = +input.value;
-        } else if (input.type === "radio") {
+        } else if (input.type === 'radio') {
             if (input.checked) {
                 details.class = input.value;
             }
@@ -234,28 +256,28 @@ function updateDetails() {
 updateDetails()
 
 function updateDetailsInput() {
-    let detailsInput = getById("details")
+    let detailsInput = getById('details')
     let passengers = details.passengers.adult + details.passengers.kids + details.passengers.babies
     detailsInput.value = `${passengers} пассажир(ов), ${details.class}`
 }
 
 
-const detailsButtons = detailsModal.querySelectorAll("button")
+const detailsButtons = detailsModal.querySelectorAll('button')
 
 detailsButtons.forEach(element => {
-    if (element.classList.contains("help")) {
-        element.addEventListener("click", function () {
-            alert("Вы нажали на кнопку помощи")
+    if (element.classList.contains('help')) {
+        element.addEventListener('click', function () {
+            alert('Вы нажали на кнопку помощи')
         },)
     } else {
-        let parentDiv = element.closest("div")
-        let input = parentDiv.querySelector("input")
+        let parentDiv = element.closest('div')
+        let input = parentDiv.querySelector('input')
 
-        if (element.classList.contains("plus")) {
-            element.addEventListener("click", function () {
+        if (element.classList.contains('plus')) {
+            element.addEventListener('click', function () {
                 if (details.passengers.adult + details.passengers.kids + details.passengers.babies < 9) {
-                    if (details.passengers.adult === 0 && input.id !== "adult") {
-                        alert("Невозможно купить билет детям без взрослых!")
+                    if (details.passengers.adult === 0 && input.id !== 'adult') {
+                        alert('Невозможно купить билет детям без взрослых!')
                     } else {
                         increaseValue(input);
                         details.passengers[input.id] = +input.value;
@@ -263,14 +285,14 @@ detailsButtons.forEach(element => {
                     }
                 }
             },)
-        } else if (element.classList.contains("minus")) {
-            element.addEventListener("click", function () {
+        } else if (element.classList.contains('minus')) {
+            element.addEventListener('click', function () {
                 if (details.passengers[input.id] > 0) {
 
                     if (details.passengers.kids + details.passengers.babies > 0
-                        && input.id === "adult"
+                        && input.id === 'adult'
                         && details.passengers.adult === 1) {
-                        alert("Невозможно купить билет детям без взрослых!")
+                        alert('Невозможно купить билет детям без взрослых!')
                     } else {
                         decreaseValue(input);
                         details.passengers[input.id] = +input.value;
@@ -283,37 +305,37 @@ detailsButtons.forEach(element => {
     }
 })
 
-const detailsRadio = detailsModal.querySelectorAll("input[type='radio']")
+const detailsRadio = detailsModal.querySelectorAll('input[type="radio"]')
 detailsRadio.forEach(element => {
-    element.addEventListener("change", function () {
+    element.addEventListener('change', function () {
         details.class = element.value;
         updateDetailsInput()
     })
 })
 
 function openDetailsModal() {
-    detailsModal.style.display = "flex";
-    detailsField.classList.add("header-search-input-fields-details-focused");
+    detailsModal.style.display = 'flex';
+    detailsField.classList.add('header-search-input-fields-details-focused');
 }
 
 function closeDetailsModal() {
-    detailsModal.style.display = "none";
-    detailsField.classList.remove("header-search-input-fields-details-focused");
+    detailsModal.style.display = 'none';
+    detailsField.classList.remove('header-search-input-fields-details-focused');
 }
 
 function openDatePicker() {
     if (!datePickerVisible) {
-        datePicker.style.display = "block";
+        datePicker.style.display = 'block';
         datePickerVisible = true;
-        calendarContainer.classList.add("header-search-input-fields-calendar-focused");
+        calendarContainer.classList.add('header-search-input-fields-calendar-focused');
     }
 }
 
 function closeDatePicker() {
     if (datePickerVisible) {
-        datePicker.style.display = "none";
+        datePicker.style.display = 'none';
         datePickerVisible = false
-        calendarContainer.classList.remove("header-search-input-fields-calendar-focused");
+        calendarContainer.classList.remove('header-search-input-fields-calendar-focused');
     }
 }
 
@@ -338,7 +360,7 @@ function showMonth(year, month) {
     let lastDateOfMonth = new Date(year, month + 1, 0).getDate();
     let lastDateOfPrevMonth = new Date(year, month, 0)
     let firstDateOfNextMonth = new Date(year, month + 1, 1)
-    daysContainer.innerHTML = "";
+    daysContainer.innerHTML = '';
 
     function updateDateCells(dateNumber, monthNumber, itemClass = null) {
         let date = new Date(year, monthNumber, dateNumber);
@@ -357,7 +379,7 @@ function showMonth(year, month) {
 
     for (let i = lastDateOfPrevMonth.getDay(); i >= 1; i--) {
         let dateNumber = lastDateOfPrevMonth.getDate() - i + 1;
-        updateDateCells(dateNumber, month - 1, "headerModal-datePicker-days-inactive")
+        updateDateCells(dateNumber, month - 1, 'headerModal-datePicker-days-inactive')
     }
 
     for (let i = firstDateOfMonth; i <= lastDateOfMonth; i++) {
@@ -367,7 +389,7 @@ function showMonth(year, month) {
     for (let i = firstDateOfNextMonth.getDay(); i <= 7; i++) {
         if (i === 1) break
         let dateNumber = firstDateOfNextMonth.getDate() - firstDateOfNextMonth.getDay() + i;
-        updateDateCells(dateNumber, month, "headerModal-datePicker-days-inactive");
+        updateDateCells(dateNumber, month, 'headerModal-datePicker-days-inactive');
     }
 
     colorCells()
@@ -380,13 +402,13 @@ let pickedDatesAll = []
 function formatDate(date) {
 
     let day = date.getDate();
-    if (("" + day).length < 2) {
-        day = "0" + day;
+    if (('' + day).length < 2) {
+        day = '0' + day;
     }
 
     let month = date.getMonth() + 1;
-    if (("" + month).length < 2) {
-        month = "0" + month;
+    if (('' + month).length < 2) {
+        month = '0' + month;
     }
 
     return `${day}.${month}.${date.getFullYear()}`;
@@ -397,11 +419,11 @@ function paintDay(element) {
     if (datePickerCounter > 1) {
         datePickerCounter = 0;
         pickedDateInputs.forEach(item => {
-            item.classList.remove("headerModal-datePicker-days-chosen")
+            item.classList.remove('headerModal-datePicker-days-chosen')
         });
         pickedDateInputs = [];
         pickedDatesAll.forEach(item => {
-            item.classList.remove("headerModal-datePicker-days-between")
+            item.classList.remove('headerModal-datePicker-days-between')
         });
         pickedDatesAll = [];
     }
@@ -422,7 +444,7 @@ function paintDay(element) {
         }
     }
 
-    element.classList.add("headerModal-datePicker-days-chosen");
+    element.classList.add('headerModal-datePicker-days-chosen');
 
     colorCells()
 
@@ -445,7 +467,7 @@ function colorCells() {
 
         for (element of pickedDatesAll) {
             if (element !== pickedDateInputs[0] && element !== pickedDateInputs[1])
-                element.classList.add("headerModal-datePicker-days-between");
+                element.classList.add('headerModal-datePicker-days-between');
         }
 
     }
@@ -494,27 +516,27 @@ function PopularDestination(from, to, price) {
 }
 
 let popularDestinations = [
-    new PopularDestination("Варшава", "Милан", 771),
-    new PopularDestination("Варшава", "Лондон", 1001),
-    new PopularDestination("Варшава", "Аликанте", 1424),
-    new PopularDestination("Варшава", "Мадрид", 1646),
-    new PopularDestination("Варшава", "Барселона", 1663),
-    new PopularDestination("Варшава", "Амстердам", 3256),
-    new PopularDestination("Варшава", "Лиссабон", 3364),
-    new PopularDestination("Варшава", "Париж", 4077),
-    new PopularDestination("Варшава", "Нью-Йорк", 21277),
-    new PopularDestination("Варшава", "Денпасар-Бали", 25573),
+    new PopularDestination('Варшава', 'Милан', 771),
+    new PopularDestination('Варшава', 'Лондон', 1001),
+    new PopularDestination('Варшава', 'Аликанте', 1424),
+    new PopularDestination('Варшава', 'Мадрид', 1646),
+    new PopularDestination('Варшава', 'Барселона', 1663),
+    new PopularDestination('Варшава', 'Амстердам', 3256),
+    new PopularDestination('Варшава', 'Лиссабон', 3364),
+    new PopularDestination('Варшава', 'Париж', 4077),
+    new PopularDestination('Варшава', 'Нью-Йорк', 21277),
+    new PopularDestination('Варшава', 'Денпасар-Бали', 25573),
 ]
 
 function getPopularDestination() {
-    const popularDestinationDiv = document.querySelector(".main-content-popular-card")
+    const popularDestinationDiv = document.querySelector('.main-content-popular-card')
 
     for (let i = 0; i <= popularDestinations.length / 2; i++) {
         let firstItem = popularDestinations[i]
         let secondItem = popularDestinations[i + popularDestinations.length / 2 - 1]
 
-        let listItem = document.createElement("div");
-        listItem.classList.add("main-content-popular-card-listItem");
+        let listItem = document.createElement('div');
+        listItem.classList.add('main-content-popular-card-listItem');
         listItem.innerHTML = `
         <p>${firstItem.from} → ${firstItem.to} <span>от ${firstItem.price} ₽</span></p>
         <p>${secondItem.from} → ${secondItem.to} <span>от ${secondItem.price} ₽</span></p>`
@@ -530,25 +552,25 @@ function Company(name, rate) {
 }
 
 let top10Companies = [
-    new Company("Эйр Нью Зиланд", 4.5),
-    new Company("Эмирейтс", 4.7),
-    new Company("Катар Эйрвейз", 4.7),
-    new Company("Тюркиш Эрлайнз", 4.7),
-    new Company("Сингапур Эйрлайнз", 4.7),
-    new Company("Кореан Эйр", 4.6),
-    new Company("Катай Пасифик", 4.5),
-    new Company("Эйр Астана", 4.5),
-    new Company("Верджин Атлантик Эйрвэйз", 4.5),
+    new Company('Эйр Нью Зиланд', 4.5),
+    new Company('Эмирейтс', 4.7),
+    new Company('Катар Эйрвейз', 4.7),
+    new Company('Тюркиш Эрлайнз', 4.7),
+    new Company('Сингапур Эйрлайнз', 4.7),
+    new Company('Кореан Эйр', 4.6),
+    new Company('Катай Пасифик', 4.5),
+    new Company('Эйр Астана', 4.5),
+    new Company('Верджин Атлантик Эйрвэйз', 4.5),
 ]
 
 function getTop10Companies() {
 
-    const topDiv = document.querySelector(".main-content-top-card");
+    const topDiv = document.querySelector('.main-content-top-card');
     top10Companies
         .sort((a, b) => b.rate - a.rate)
         .forEach((item, index) => {
-            let listItem = document.createElement("div");
-            listItem.classList.add("main-content-top-card-listItem");
+            let listItem = document.createElement('div');
+            listItem.classList.add('main-content-top-card-listItem');
             listItem.innerHTML = `
         <p>${index + 1}<a>${item.name}</a> <span>${item.rate}</span></p>`
             topDiv.append(listItem);
