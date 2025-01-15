@@ -2,6 +2,36 @@
 @import "shared/wrapper";
 @import "shared/text";
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 100;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 100;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.fadeInAnimation {
+  animation: fade-in 200ms ease-in-out forwards;
+}
+
+.fadeOutAnimation {
+  animation: fade-out 200ms ease-in-out forwards;
+}
+
 @keyframes switch {
   from {
     transform: scaleX(1);
@@ -407,6 +437,7 @@
 .headerModal {
 
   &-cityPicker {
+    height: fit-content;
     display: none;
     position: absolute;
     z-index: 10;

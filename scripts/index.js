@@ -21,11 +21,11 @@ const cityList = [
 ]
 
 function closeCityPicker() {
-    document.querySelector('.headerModal-cityPicker').style.display = 'none';
+    fadeOut(cityPicker);
 }
 
 function openCityPicker() {
-    cityPicker.style.display = 'block';
+    fadeIn(cityPicker);
     let pickedCity = cityPicker.querySelector('.headerModal-cityPicker-picked');
     let pickedCityValue = cityPicker.querySelector('.headerModal-cityPicker-picked-city');
     let value = cityPickerInput.value;
@@ -313,19 +313,33 @@ detailsRadio.forEach(element => {
     })
 })
 
+function fadeIn(element) {
+    element.style.display = 'block';
+    element.classList.remove('fadeOutAnimation');
+    element.classList.add('fadeInAnimation');
+}
+
+function fadeOut(element) {
+    element.classList.remove('fadeInAnimation');
+    element.classList.add('fadeOutAnimation');
+    setTimeout(() => {
+        element.style.display = 'none'
+    }, 200);
+}
+
 function openDetailsModal() {
-    detailsModal.style.display = 'flex';
+    fadeIn(detailsModal)
     detailsField.classList.add('header-search-input-fields-details-focused');
 }
 
 function closeDetailsModal() {
-    detailsModal.style.display = 'none';
+    fadeOut(detailsModal)
     detailsField.classList.remove('header-search-input-fields-details-focused');
 }
 
 function openDatePicker() {
     if (!datePickerVisible) {
-        datePicker.style.display = 'block';
+        fadeIn(datePicker)
         datePickerVisible = true;
         calendarContainer.classList.add('header-search-input-fields-calendar-focused');
     }
@@ -333,8 +347,8 @@ function openDatePicker() {
 
 function closeDatePicker() {
     if (datePickerVisible) {
-        datePicker.style.display = 'none';
-        datePickerVisible = false
+        fadeOut(datePicker);
+        datePickerVisible = false;
         calendarContainer.classList.remove('header-search-input-fields-calendar-focused');
     }
 }
@@ -567,7 +581,7 @@ function getTop10Companies() {
 
     const topDiv = document.querySelector('.main-content-top-card');
     top10Companies
-        .sort((a, b) => b.rate - a.rate)
+        .toSorted((a, b) => b.rate - a.rate)
         .forEach((item, index) => {
             let listItem = document.createElement('div');
             listItem.classList.add('main-content-top-card-listItem');
