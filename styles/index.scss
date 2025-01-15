@@ -25,6 +25,36 @@
     gap: 50px;
     height: 80px;
 
+    &-type::after {
+      position: relative;
+      bottom: 1px;
+      color: $white;
+      content: "⯆";
+      margin: 0 0 0 8px;
+    }
+
+    &-help {
+      @extend .header-navMenu-type;
+    }
+
+    &-language {
+      @extend .header-navMenu-type;
+
+      &::before {
+        transform: translateY(3px);
+        margin-right: 6px;
+        content: "";
+        display: inline-block;
+        background-image: url("https://www.svgrepo.com/show/449121/language.svg");
+        height: 16px;
+        width: 16px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        filter: invert(1);
+      }
+    }
+
     a {
       color: $white;
       text-decoration: none;
@@ -34,7 +64,7 @@
 
   &-title {
     @extend .h1;
-    color: $accentLight;
+    color: $title;
     padding: 60px 0 20px 0;
 
     &:hover {
@@ -70,7 +100,7 @@
           }
 
           span {
-            background-color: rgb(114, 182, 43);
+            background-color: $markerColor;
             color: white;
             padding: 0 8px;
             border-radius: 12px;
@@ -92,7 +122,7 @@
       margin-top: 12px;
       @extend .text;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: stretch;
       height: 80px;
 
@@ -104,8 +134,17 @@
         display: flex;
         flex-direction: row;
         background-color: $gray;
-        gap: 1px;
         box-shadow: 1px 0 15px 0 rgba(0, 0, 0, 0.2);
+
+        > div {
+          border-right: $gray 1px solid;
+
+          &:last-child {
+            border-right: none;
+            border-radius: 0 5px 5px 0;
+          }
+
+        }
 
         input {
           position: relative;
@@ -157,8 +196,8 @@
           }
         }
 
-
         &-from {
+          width: 20%;
           box-sizing: border-box;
           position: relative;
           display: inline-flex;
@@ -190,6 +229,7 @@
         }
 
         &-calendar {
+          width: 35%;
           display: flex;
           position: relative;
           flex-direction: row;
@@ -205,6 +245,7 @@
 
           &-from, &-to {
             @extend .header-search-input-fields-to;
+            width: 100%;
             flex-direction: row;
 
             &:focus-within {
@@ -244,6 +285,7 @@
         }
 
         &-details {
+          width: 25%;
           @extend .header-search-input-fields-from;
           border-radius: 0 5px 5px 0;
 
@@ -312,8 +354,9 @@
 
   &-cityPicker {
     display: none;
-    width: 40%;
     position: absolute;
+    z-index: 10;
+    width: 40%;
     background-color: $white;
     border-radius: 5px;
     top: 100px;
@@ -333,7 +376,7 @@
       &-city {
         @extend .text;
         padding: 8px 24px;
-        background-color: $selectedListItem;
+        background-color: $backgroundGray;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -392,7 +435,8 @@
         padding: 8px 24px;
 
         &:hover {
-          background-color: $gray;
+          background-color: $backgroundGray;
+          cursor: pointer;
         }
 
         &-name {
@@ -421,7 +465,7 @@
     box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
     gap: 0;
     top: 100px;
-    left: 16px;
+    left: calc((100% - 400px) / 2);
     background-color: $white;
     display: none;
     border-radius: 5px;
@@ -501,7 +545,7 @@
 
   &-details {
     @extend .headerModal-cityPicker;
-    width: 400px;
+    width: fit-content;
     display: none;
     flex-direction: column;
     right: 0;
@@ -600,6 +644,7 @@
 
       input[type="radio"] {
         display: none;
+
         & + label {
           @extend .textSmall;
           font-weight: 500;
@@ -621,4 +666,479 @@
     }
 
   }
+}
+
+.mainSection {
+  @extend .section;
+  background-color: $backgroundGray;
+  padding: 24px 0;
+}
+
+.main {
+  @extend .wrapper;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  &-advise {
+    display: flex;
+    gap: 24px;
+
+    &-card {
+      position: relative;
+      height: 160px;
+      display: flex;
+      flex-direction: row;
+      background-color: $white;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px 16px;
+      width: calc(50% - 12px);
+      border-radius: 10px;
+      box-shadow: 1px 0 10px rgba(0, 0, 0, 0.1);
+
+      div {
+        display: flex;
+        width: 70%;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      img {
+        position: absolute;
+        bottom: 30px;
+        right: 16px;
+      }
+
+      button {
+        @extend .header-search-input-submit;
+        @extend .textSmall;
+        font-weight: bold;
+        height: 28px;
+        width: fit-content;
+        margin: 0;
+        box-shadow: none;
+        position: absolute;
+        bottom: 16px;
+
+        &:active {
+          box-shadow: none;
+        }
+
+        &.secondary {
+          background-color: $accentLight;
+          color: $accent;
+
+        }
+      }
+
+      p {
+        @extend .text;
+        font-weight: 500;
+      }
+
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+
+        li {
+          @extend .textSmall;
+          color: $gray;
+          list-style-type: none;
+          margin-right: 16px;
+
+          &::before {
+            content: "✔";
+            color: $markerColor;
+            margin-right: 2px;
+          }
+        }
+      }
+
+      &-text {
+        display: flex;
+        flex-direction: column;
+
+      }
+    }
+  }
+
+  &-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+
+    p {
+      @extend .text;
+      font-weight: 500;
+      padding: 0 3px 10px 3px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      a {
+        @extend .textSmall;
+        color: $selection;
+      }
+    }
+
+    &-popular {
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+
+      &-card {
+        display: flex;
+        flex-direction: column;
+        background-color: $white;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 0;
+        border-radius: 10px;
+        box-shadow: 1px 0 10px rgba(0, 0, 0, 0.1);
+
+        &-listItem {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          gap: 40px;
+          padding: 16px 16px;
+          box-sizing: border-box;
+          border-bottom: $dividerColor 1px solid;
+
+          &:last-child {
+            border: none;
+          }
+
+          p {
+            padding: 0;
+            font-weight: 400;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 50%;
+            align-items: center;
+
+            span {
+              color: $accent;
+            }
+          }
+
+        }
+      }
+
+
+    }
+
+    &-top {
+      width: calc(30% - 24px);
+
+      &-card {
+        @extend .main-content-popular-card;
+        padding: 3px 0;
+        gap: 0;
+
+        &-listItem {
+          @extend .main-content-popular-card-listItem;
+          justify-content: space-between;
+          border-bottom: none;
+          padding: 3px 16px;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          p {
+            width: 100%;
+
+            a {
+              margin-left: 12px;
+              flex-grow: 1;
+            }
+
+            span {
+              color: inherit;
+
+              &::before {
+                content: "★";
+                color: $accent;
+                font-size: 20px;
+                line-height: 20px;
+                margin-right: 4px;
+              }
+            }
+          }
+        }
+
+
+      }
+    }
+
+    &-info {
+      @extend .main-content-popular;
+
+      &-card {
+        @extend .main-content-popular-card;
+        gap: 16px;
+        padding: 16px 0;
+
+        &-listItem {
+          @extend .main-content-top-card-listItem;
+          flex-direction: column;
+          gap: 0;
+
+          p {
+            @extend .textSmall;
+            padding: 0;
+            color: $gray;
+
+            &.title {
+              font-weight: 500;
+              margin-bottom: 10px;
+              color: inherit;
+            }
+          }
+
+        }
+      }
+    }
+
+    &-faq {
+
+      @extend .main-content-top;
+
+      &-card {
+        @extend .main-content-top-card;
+
+        p {
+          @extend .main-content-top-card-listItem;
+          width: 100%;
+        }
+
+        &:last-child {
+          background-color: #d0d1fb;
+          margin-top: 24px;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-items: center;
+
+          img {
+            width: 100px;
+            padding: 24px 24px 24px 0;
+          }
+
+          p {
+            @extend .text;
+            font-weight: 400;
+            line-height: 24px;
+            width: calc(100% - 140px);
+            padding: 0 0 0 20px;
+            margin-right: -10px;
+            opacity: 60%;
+          }
+
+          form {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0 24px 24px 24px;
+
+            button {
+              width: 50px;
+              height: 50px;
+              @extend .header-search-input-submit;
+              padding: 0;
+              box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+
+              &:active {
+                scale: 0.98;
+                box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.3);
+              }
+
+              img {
+                filter: invert(1);
+                padding: 0;
+              }
+
+            }
+
+            input {
+              width: 100%;
+              height: 50px;
+              border: $accent 2px solid;
+              box-sizing: border-box;
+              border-radius: 5px;
+              padding: 16px;
+              color: $accent;
+
+              &:focus {
+                outline: none;
+              }
+
+            }
+
+            .alert {
+              @extend .text;
+              font-weight: bold;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 20px;
+              width: 20px;
+              border-radius: 50%;
+              position: absolute;
+              top: -9px;
+              right: 100px;
+              background-color: $accent;
+              color: $white;
+            }
+          }
+        }
+
+      }
+    }
+  }
+}
+
+
+.footerSection {
+  @extend .section;
+  background-color: $white;
+  padding: 24px 0;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+  @extend .wrapper;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &-images {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+
+    &-item {
+      width: calc(100% / 6 - (20px * 5) / 6);
+      display: flex;
+      flex-direction: column;
+
+      p {
+        @extend .textSmall;
+        font-weight: 500;
+      }
+
+      ul {
+        @extend .textSmall;
+        margin: 12px 0;
+        list-style-type: none;
+
+        li {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      a {
+        @extend .textSmall;
+        color: $selection;
+
+        &::after {
+          content: " →"
+        }
+      }
+
+    }
+  }
+
+  &-divider {
+    width: 100%;
+    height: 1px;
+    background-color: $dividerColor;
+  }
+
+  &-contacts {
+    padding: 12px 0 20px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    div {
+
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      padding: 0;
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @extend .textSmall;
+        height: 50px;
+        border: $selection 1px solid;
+        color: $selection;
+        background-color: transparent;
+        padding: 0 20px;
+        margin: 0 12px 0 0;
+        border-radius: 5px;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &:active {
+          scale: 0.98;
+        }
+
+        &.circle {
+          height: 40px;
+          width: 40px;
+          border-radius: 50%;
+          background-color: $gray;
+          border: none;
+          margin: 0;
+          opacity: 80%;
+
+          img {
+            height: 20px;
+            filter: invert(1);
+          }
+        }
+
+        &.black {
+          @extend .textSmall;
+          font-weight: 500;
+          background-color: black;
+          color: $white;
+          border: none;
+          margin: 0;
+          padding: 0 12px;
+
+          img {
+            height: 28px;
+            filter: invert(1);
+            margin-right: 8px;
+          }
+        }
+      }
+
+    }
+
+  }
+
 }

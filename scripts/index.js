@@ -236,7 +236,7 @@ updateDetails()
 function updateDetailsInput() {
     let detailsInput = getById("details")
     let passengers = details.passengers.adult + details.passengers.kids + details.passengers.babies
-    detailsInput.value = `${passengers} пас., ${details.class}`
+    detailsInput.value = `${passengers} пассажир(ов), ${details.class}`
 }
 
 
@@ -486,3 +486,74 @@ function createCalendar() {
 }
 
 createCalendar();
+
+function PopularDestination(from, to, price) {
+    this.from = from;
+    this.to = to;
+    this.price = price;
+}
+
+let popularDestinations = [
+    new PopularDestination("Варшава", "Милан", 771),
+    new PopularDestination("Варшава", "Лондон", 1001),
+    new PopularDestination("Варшава", "Аликанте", 1424),
+    new PopularDestination("Варшава", "Мадрид", 1646),
+    new PopularDestination("Варшава", "Барселона", 1663),
+    new PopularDestination("Варшава", "Амстердам", 3256),
+    new PopularDestination("Варшава", "Лиссабон", 3364),
+    new PopularDestination("Варшава", "Париж", 4077),
+    new PopularDestination("Варшава", "Нью-Йорк", 21277),
+    new PopularDestination("Варшава", "Денпасар-Бали", 25573),
+]
+
+function getPopularDestination() {
+    const popularDestinationDiv = document.querySelector(".main-content-popular-card")
+
+    for (let i = 0; i <= popularDestinations.length / 2; i++) {
+        let firstItem = popularDestinations[i]
+        let secondItem = popularDestinations[i + popularDestinations.length / 2 - 1]
+
+        let listItem = document.createElement("div");
+        listItem.classList.add("main-content-popular-card-listItem");
+        listItem.innerHTML = `
+        <p>${firstItem.from} → ${firstItem.to} <span>от ${firstItem.price} ₽</span></p>
+        <p>${secondItem.from} → ${secondItem.to} <span>от ${secondItem.price} ₽</span></p>`
+        popularDestinationDiv.append(listItem);
+    }
+}
+
+getPopularDestination()
+
+function Company(name, rate) {
+    this.name = name;
+    this.rate = rate;
+}
+
+let top10Companies = [
+    new Company("Эйр Нью Зиланд", 4.5),
+    new Company("Эмирейтс", 4.7),
+    new Company("Катар Эйрвейз", 4.7),
+    new Company("Тюркиш Эрлайнз", 4.7),
+    new Company("Сингапур Эйрлайнз", 4.7),
+    new Company("Кореан Эйр", 4.6),
+    new Company("Катай Пасифик", 4.5),
+    new Company("Эйр Астана", 4.5),
+    new Company("Верджин Атлантик Эйрвэйз", 4.5),
+]
+
+function getTop10Companies() {
+
+    const topDiv = document.querySelector(".main-content-top-card");
+    top10Companies
+        .sort((a, b) => b.rate - a.rate)
+        .forEach((item, index) => {
+            let listItem = document.createElement("div");
+            listItem.classList.add("main-content-top-card-listItem");
+            listItem.innerHTML = `
+        <p>${index + 1}<a>${item.name}</a> <span>${item.rate}</span></p>`
+            topDiv.append(listItem);
+        })
+
+}
+
+getTop10Companies()

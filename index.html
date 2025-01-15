@@ -12,10 +12,10 @@
     <div class="header">
         <div>
             <ul class="header-navMenu">
-                <li><a href="">Корпоративным клиентам</a></li>
-                <li id="header-type"><a href="">Авиабилеты</a></li>
-                <li id="header-help"><a href="">Справка</a></li>
-                <li id="header-language"><a href="">Русский</a></li>
+                <li><a>Корпоративным клиентам</a></li>
+                <li><a class="header-navMenu-type">Авиабилеты</a></li>
+                <li><a class="header-navMenu-help">Справка</a></li>
+                <li><a class="header-navMenu-language">Русский</a></li>
             </ul>
         </div>
         <div class="header-title">Лучшие авиабилеты по самым низким ценам</div>
@@ -78,11 +78,18 @@
                         <div class="headerModal-datePicker">
                             <div class="headerModal-datePicker-pages">
                                 <button type="button" id="prevMonthPage">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="round" style="transform: scaleX(-1)"><path d="M9 18l6-6-6-6"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                                         fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="round"
+                                         style="transform: scaleX(-1)">
+                                        <path d="M9 18l6-6-6-6"></path>
+                                    </svg>
                                 </button>
                                 <span id="datePicker-month"></span>
                                 <button type="button" id="nextMonthPage">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                                         fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="round">
+                                        <path d="M9 18l6-6-6-6"></path>
+                                    </svg>
                                 </button>
                             </div>
                             <div class="headerModal-datePicker-daysTitle" id="datePicker-daysTitle"></div>
@@ -116,7 +123,8 @@
                             <div class="headerModal-details-passengers">
                                 <p class="headerModal-details-passengers-text">
                                     Младенцы
-                                    <button class="help">?</button><br>
+                                    <button class="help">?</button>
+                                    <br>
                                     <span>до 2 лет</span>
                                 </p>
                                 <button type="button" class="minus" id="detailsBabiesMinus"></button>
@@ -146,6 +154,250 @@
         </div>
     </div>
 </header>
+
+<main class="mainSection">
+    <div class="main">
+        <div class="main-advise">
+            <div class="main-advise-card">
+                <div class="main-advise-card-text">
+                    <p>Управляйте вашими билетами в Telegram</p>
+                    <ul>
+                        <li>Доступ к билетам и кабинету</li>
+                        <li>Агентская поддержка</li>
+                        <li>FAQ</li>
+                    </ul>
+                    <button type="button" class="secondary">Посмотреть возможности</button>
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Telegram_2019_Logo.svg" height="100px"
+                     alt="telegram"/>
+            </div>
+            <div class="main-advise-card">
+                <div class="main-advise-card-text">
+                    <p>Билеты на автобус по Китаю и Европе</p>
+                    <ul>
+                        <li>Удобное сравнение цен</li>
+                        <li>Актуальное расписание</li>
+                    </ul>
+                    <button type="button">Найти билеты</button>
+                </div>
+                <img src="files/bus.png" height="100px" alt="telegram" style="margin-right: -16px"/>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="main-content-popular">
+                <p>Популярные направления</p>
+                <div class="main-content-popular-card">
+                </div>
+            </div>
+
+            <div class="main-content-top">
+                <p>ТОП-10 авиакомпаний <span><a>Подробнее</a></span></p>
+                <div class="main-content-top-card">
+                </div>
+            </div>
+
+            <div class="main-content-info">
+                <p>Горящие распродаже авиарейсов</p>
+                <div class="main-content-info-card">
+                    <div class="main-content-info-card-listItem">
+                        <p class="title">Как найти авиабилеты со скидкой онлайн</p>
+                        <p>На нашем сайте вы можете купить билеты на самолет или оформить раннее
+                            бронирование. Акции, скидки и специальные предложения, которые постоянно
+                            обновляются, позволяют приобрести недорогие авиабилеты не менее чем за 20 дней
+                            до вылета. Вы можете сэкономить, обращая внимание на рейсы с пересадками,
+                            которые часто стоят дешевле прямых рейсов.</p>
+                    </div>
+                    <div class="main-content-info-card-listItem">
+                        <p class="title">Клиентская поддержка</p>
+                        <p>Jessica Foster 1982/1996, для ребенка? Где внести данные о визе?
+                            Можно ли поменять день выезда? Как оформить депозитарный багаж?
+                            Оператор нашей службы поддержки знает ответы на все вопросы о путешествии.
+                            Ваши бронирования доступны в режиме 24/7 на украинском, русском и английском языках.
+                            Мы всегда готовы помочь вам подобрать, оплатить или внести изменения в билет
+                            быстро и удобно. С помощью удобного поиска сделать заказ авиабилетов
+                            по интернету можно легко и без проблем.</p>
+                    </div>
+                    <div class="main-content-info-card-listItem">
+                        <p class="title">Бонусная программа для постоянных клиентов</p>
+                        <p>За каждую покупку авиабилетов на нашем сайте вы получите бонусы – 1%
+                            от суммы транзакции. Накопив достаточное количество баллов, можно оплатить часть
+                            билетов на самолет или использовать их для следующих покупок.
+                            Максимальная скидка, которую можно получить благодаря бонусной программе, – 20%.</p>
+                    </div>
+                    <div class="main-content-info-card-listItem">
+                        <p class="title">Самые дешевые авиабилеты</p>
+                        <p>Мы стремимся предложить вам самые дешевые авиабилеты!
+                            Сотрудничество с ведущими авиакомпаниями позволяет нам формировать гибкие тарифы
+                            и предлагать нашим клиентам лучшие условия. Наш сайт-агрегатор авиарейсов оперативно
+                            обрабатывает ваши запросы и находит самые доступные варианты. Вы можете воспользоваться
+                            фильтрами и отсортировать предложения по перевозчикам, времени вылета и другим
+                            параметрам.</p>
+                    </div>
+                    <div class="main-content-info-card-listItem">
+                        <p class="title">Сравнение цен на авиабилеты</p>
+                        <p>У нас всегда можно забронировать очень дешевые авиабилеты по Европе и в другие части мира.
+                            Наша система динамики цен определяет лучшие цены для покупки, а также подскажет высокий
+                            и низкий сезоны для путешествий по тем или иным маршрутам.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content-faq">
+                <p>Частые вопросы</p>
+                <div class="main-content-faq-card">
+                    <p><a>Как забронировать авиабилет</a></p>
+                    <p><a>Как оплатить авиабилеты</a></p>
+                    <p><a>Как зарегистрироваться на рейс</a></p>
+                    <p><a>Как вернуть авиабилет</a></p>
+                    <p><a>Бонусная программа</a></p>
+                    <p><a>Все темы</a></p>
+                </div>
+                <div class="main-content-faq-card">
+                    <p>Лучшие предложения для путешествий</p>
+                    <img src="files/notebook.png" height="100px" alt="telegram"/>
+                    <form class="main-content-faq-card-button">
+                        <div class="alert">!</div>
+                        <input type="email" id="emailRss" placeholder="Email *">
+                        <button type="submit">
+                            <img src="https://www.svgrepo.com/show/509019/arrow-right.svg" height="16px"
+                                 alt="Подписаться"/>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footerSection">
+    <div class="footer">
+        <div class="footer-images">
+            <a href="https://www.iata.org/"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Iata_logo_225.svg/249px-Iata_logo_225.svg.png"
+                    alt="IATA"
+                    height="43"></a>
+            <a href="https://www.pcisecuritystandards.org/"><img
+                    src="https://firebrand.training/media/s2fp4f0g/pci-ss-ll.svg?rmode=pad&width=325&height=325&v=1dae418cc0971d0"
+                    alt="PCI Security Standards Council"
+                    height="60"></a>
+            <a href="https://cis.visa.com/">
+                <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png"
+                     alt="VISA"
+                     height="28"></a>
+            <a href="">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/400px-Mastercard_2019_logo.svg.png"
+                     alt="Mastercard"
+                     height="38">
+            </a>
+        </div>
+
+        <div class="footer-content">
+            <div class="footer-content-item">
+                <p>Страны</p>
+                <ul>
+                    <li>Испания</li>
+                    <li>Турция</li>
+                    <li>Египет</li>
+                    <li>Грузия</li>
+                    <li>Польша</li>
+                    <li>Франция</li>
+                </ul>
+                <p><a>Все страны</a></p>
+            </div>
+
+            <div class="footer-content-item">
+                <p>Города</p>
+                <ul>
+                    <li>Кишинев</li>
+                    <li>Дубай</li>
+                    <li>Варшава</li>
+                    <li>Прага</li>
+                    <li>Париж</li>
+                    <li>Франкфурт</li>
+                </ul>
+                <p><a>Все города</a></p>
+            </div>
+
+            <div class="footer-content-item">
+                <p>Направления</p>
+                <ul>
+                    <li>Кишинев - Стамбул</li>
+                    <li>Кишинев - Анталия</li>
+                    <li>Варшава - Торонто</li>
+                    <li>Варшава - Париж</li>
+                    <li>Кишинев - Тбилиси</li>
+                    <li>Варшава - Стамбул</li>
+                </ul>
+                <p><a>Все направления</a></p>
+            </div>
+
+            <div class="footer-content-item">
+                <p>Аэропорты</p>
+                <ul>
+                    <li>Ф. Шопен (Варшава)</li>
+                    <li>Франкфурт Интернешнл (Франкфурт)</li>
+                    <li>Аэропорт Кишинев (Кишинев)</li>
+                    <li>Фиумичино (Рим)</li>
+                    <li>Аэропорт Стамбула (Стамбул)</li>
+                    <li>Шарль Де Голль (Париж)</li>
+                </ul>
+                <p><a>Все аэропорты</a></p>
+            </div>
+
+            <div class="footer-content-item">
+                <p>Авиакомпании</p>
+                <ul>
+                    <li>Тюркиш Эрлайнз</li>
+                    <li>Wizz Ait Украина</li>
+                    <li>Qatar Airways</li>
+                    <li>Ryanair</li>
+                    <li>Air Baltic</li>
+                </ul>
+                <p><a>Все авиакомпании</a></p>
+            </div>
+            <div class="footer-content-item">
+                <p>Наши сервисы</p>
+                <ul>
+                    <li>Рейтинг авиакомпаний</li>
+                    <li>Сравнение цен</li>
+                    <li>Расписание рейсов</li>
+                    <li>Акции</li>
+                </ul>
+                <p><a>Карта сайта</a></p>
+            </div>
+
+
+        </div>
+
+        <div class="footer-divider"></div>
+        <div class="footer-contacts">
+            <div>
+                <button type="button">Партнерская программа</button>
+                <button type="button" class="black">
+                    <img src="https://www.svgrepo.com/show/390295/google-play-store.svg" alt="Google Play logo">
+                    Google Play
+                </button>
+                <button type="button" class="black">
+                    <img src="https://www.svgrepo.com/show/352973/app-store.svg" alt="Apple logo">
+                    App Store
+                </button>
+            </div>
+            <div>
+                <button type="button" class="circle">
+                    <img src="https://www.svgrepo.com/show/494341/facebook.svg" alt="Facebook">
+                </button>
+                <button type="button" class="circle">
+                    <img src="https://www.svgrepo.com/show/521711/instagram.svg" alt="Instagram">
+                </button>
+                <button type="button" class="circle">
+                    <img src="https://www.svgrepo.com/show/336237/telegram.svg" alt="Telegram">
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+</footer>
 
 </body>
 </html>
