@@ -40,6 +40,7 @@
     transform: scaleX(-1);
   }
 }
+
 @keyframes switchReversed {
   from {
     transform: scaleX(-1);
@@ -57,6 +58,36 @@
   animation: switchReversed 200ms ease-in-out forwards;
 }
 
+@keyframes slideLeft {
+  from {
+    right: -100%;
+    opacity: 0;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  from {
+    right: 0;
+    opacity: 1;
+  }
+  to {
+    right: -100%;
+    opacity: 0;
+  }
+}
+
+.slideLeftAnimation {
+  animation: slideLeft 350ms ease-in-out forwards;
+}
+
+.slideRightAnimation {
+  animation: slideRight 350ms ease-in-out forwards;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -67,8 +98,86 @@
   background-color: $primary;
 }
 
+nav {
+  position: relative;
+
+  ul {
+    position: absolute;
+    right: 16px;
+    padding: 16px;
+    background-color: $white;
+    border-radius: 10px;
+    color: black;
+    display: none;
+    list-style-type: none;
+
+    li {
+      color: black;
+
+      a {
+        color: inherit;
+
+        &:link {
+          color: inherit;
+        }
+
+        &:visited {
+          color: inherit;
+        }
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
 .header {
   @extend .wrapper;
+
+  #burger {
+    width: 30px;
+    height: 30px;
+    background-image: url("https://www.svgrepo.com/show/506800/burger-menu.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-clip: padding-box;
+    filter: invert(1);
+  }
+
+  #language {
+    @extend #burger;
+    width: 25px;
+    height: 25px;
+    background-image: url("https://www.svgrepo.com/show/449121/language.svg");
+  }
+
+  &-navContainer {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+
+    &-buttons {
+      position: relative;
+      z-index: 20;
+      width: calc(100%);
+      display: none;
+      flex-direction: row;
+      justify-content: flex-end;
+      padding: 24px 12px;
+      gap: 24px;
+      align-items: center;
+
+      @media screen and (max-width: 768px) {
+        display: flex;
+      }
+    }
+  }
 
   &-navMenu {
     @extend .textSmall;
@@ -79,6 +188,77 @@
     list-style: none;
     gap: 50px;
     height: 80px;
+    transition: height 1000ms ease-in-out;
+
+    @media screen and (max-width: 768px) {
+      //transform: translateX(100%);
+      top: 78px;
+      display: flex;
+      position: fixed;
+      z-index: 19;
+      height: 100vh;
+      gap: 10px;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 100%;
+      right: -100%;
+      align-items: flex-start;
+      background: $white;
+      padding: 20px 40px;
+      box-sizing: border-box;
+      color: black;
+    }
+
+    li {
+      position: relative;
+
+      ul {
+        width: fit-content;
+        position: absolute;
+        padding: 16px;
+        right: 0;
+        background-color: $white;
+        border-radius: 10px;
+        color: black;
+        display: none;
+        list-style-type: none;
+
+        @media screen and (max-width: 768px) {
+          position: relative;
+          display: block;
+        }
+
+        li {
+          text-wrap: nowrap;
+          color: black;
+
+          a {
+            color: inherit;
+
+            &:link {
+              color: inherit;
+            }
+
+            &:visited {
+              color: inherit;
+            }
+
+            &:hover {
+              color: $primary;
+            }
+          }
+        }
+      }
+    }
+
+    &-corporate {
+      display: block;
+
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+
+    }
 
     &-type::after {
       position: relative;
@@ -86,6 +266,10 @@
       color: $white;
       content: "⯆";
       margin: 0 0 0 8px;
+
+      @media screen and (max-width: 768px) {
+        color: black;
+      }
     }
 
     &-help {
@@ -107,12 +291,20 @@
         background-position: center;
         background-size: cover;
         filter: invert(1);
+
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
       }
     }
 
     a {
       color: $white;
       text-decoration: none;
+
+      @media screen and (max-width: 768px) {
+        color: black;
+      }
     }
 
   }
@@ -135,6 +327,9 @@
       align-items: center;
       justify-content: flex-start;
       gap: 10px;
+      overflow: scroll;
+      scrollbar-width: none;
+
 
       input[type="radio"] {
         display: none;
@@ -144,6 +339,7 @@
           @extend .textSmall;
           font-weight: 500;
 
+          text-wrap: nowrap;
           display: flex;
           background-color: $transparentWhite;
           color: $white;
@@ -180,6 +376,13 @@
       justify-content: center;
       align-items: stretch;
       height: 80px;
+      gap: 10px;
+
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+        height: fit-content;
+        gap: 20px
+      }
 
       &-fields {
         position: relative;
@@ -190,6 +393,10 @@
         flex-direction: row;
         background-color: $gray;
         box-shadow: 1px 0 15px 0 rgba(0, 0, 0, 0.2);
+
+        @media screen and (max-width: 768px) {
+          flex-direction: column;
+        }
 
         #switch {
           @extend .textBig;
@@ -206,10 +413,16 @@
           border: $accent 1px solid;
           background-color: $white;
           color: $accent;
-          z-index: 20;
+          z-index: 15;
           scale: 1;
           rotate: 0deg;
           transition: scale 100ms ease-in-out;
+
+          @media screen and (max-width: 768px) {
+            rotate: 90deg;
+            top: calc(25% - 15px);
+            left: 80%;
+          }
 
           &:hover {
             cursor: pointer;
@@ -223,11 +436,14 @@
         > div {
           border-right: $gray 1px solid;
 
-          &:last-child {
+          @media screen {
             border-right: none;
-            border-radius: 0 5px 5px 0;
+            border-bottom: $gray 1px solid;
           }
 
+          &:last-child {
+            border-right: none;
+          }
         }
 
         input {
@@ -281,6 +497,7 @@
         }
 
         &-from {
+          height: 80px;
           width: 20%;
           box-sizing: border-box;
           position: relative;
@@ -289,6 +506,12 @@
           background-color: $white;
           border-radius: 5px 0 0 5px;
           padding: 16px 24px;
+
+
+          @media screen and (max-width: 768px) {
+            border-radius: 5px 5px 0 0;
+            width: 100%;
+          }
 
           &:focus-within, &-focused {
             position: relative;
@@ -305,7 +528,7 @@
           @extend .header-search-input-fields-from;
           border-radius: 0;
 
-         &:focus-within, &-focused {
+          &:focus-within, &-focused {
             position: relative;
             z-index: 10;
             box-shadow: 0 0 16px 0 $selection;
@@ -320,6 +543,10 @@
           background-color: $white;
           justify-content: center;
           z-index: 8;
+
+          @media screen and (max-width: 768px) {
+            width: 100%;
+          }
 
           &-focused {
             position: relative;
@@ -373,6 +600,11 @@
           @extend .header-search-input-fields-from;
           border-radius: 0 5px 5px 0;
 
+          @media screen and (max-width: 768px) {
+            width: 100%;
+            border-radius: 0 0 5px 5px;
+          }
+
           &-focused {
             position: relative;
             z-index: 10;
@@ -390,12 +622,16 @@
         @extend .text;
         font-weight: bold;
         background-color: $accent;
-        margin-left: 10px;
         width: 130px;
         border: none;
         border-radius: 5px;
         color: $white;
         box-shadow: 1px 0 15px 0 rgba(0, 0, 0, 0.3);
+
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          height: 60px;
+        }
 
         &:hover {
           cursor: pointer;
@@ -448,6 +684,12 @@
     box-sizing: border-box;
     box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
     padding: 16px 0;
+
+    @media screen and (max-width: 768px) {
+      width: calc(100% - 20px);
+      top: 180px;
+      left: 10px;
+    }
 
     &-picked {
       display: none;
@@ -517,7 +759,7 @@
         display: flex;
         justify-content: space-between;
         flex-direction: row;
-        padding: 8px 24px;
+        padding: 4px 24px;
 
         &:hover {
           background-color: $backgroundGray;
@@ -546,16 +788,21 @@
   &-datePicker {
     @extend .text;
     position: absolute;
-    width: 400px;
+    width: 350px;
     box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
     gap: 0;
     top: 100px;
-    left: calc((100% - 400px) / 2);
+    left: calc((100% - 350px) / 2);
     background-color: $white;
     display: none;
     border-radius: 5px;
     box-sizing: border-box;
     padding: 16px 24px;
+
+    @media screen and (max-width: 768px) {
+      width: calc(100% - 20px);
+      left: 10px;
+    }
 
     &-pages {
       display: flex;
@@ -618,8 +865,8 @@
       div {
         display: flex;
         justify-content: center;
-        width: calc(100% / 7 - 24px);
-        padding: 12px;
+        width: calc(100% / 7 - 20px);
+        padding: 6px 10px;
 
         &:hover {
           cursor: pointer;
@@ -634,6 +881,11 @@
     display: none;
     flex-direction: column;
     right: 0;
+
+    @media screen and (max-width: 768px) {
+      width: calc(100% - 20px);
+      top: 100px;
+    }
 
     &:hover {
       cursor: default;
@@ -769,6 +1021,10 @@
     display: flex;
     gap: 24px;
 
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+
     &-card {
       position: relative;
       height: 160px;
@@ -781,6 +1037,24 @@
       width: calc(50% - 12px);
       border-radius: 10px;
       box-shadow: 1px 0 10px rgba(0, 0, 0, 0.1);
+      transition: scale 100ms ease-out;
+
+      @media screen and (max-width: 768px) {
+        width: calc(100% - 32px);
+      }
+
+      &:hover {
+        scale: 1.02;
+      }
+
+      @media screen and (max-width: 768px) {
+
+        ul {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
 
       div {
         display: flex;
@@ -793,6 +1067,10 @@
         position: absolute;
         bottom: 30px;
         right: 16px;
+
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
       }
 
       button {
@@ -805,6 +1083,10 @@
         box-shadow: none;
         position: absolute;
         bottom: 16px;
+
+        @media screen and (max-width: 768px) {
+          padding: 20px 24px;
+        }
 
         &:active {
           box-shadow: none;
@@ -820,6 +1102,8 @@
       p {
         @extend .text;
         font-weight: 500;
+        line-height: 28px;
+        text-wrap: nowrap;
       }
 
       ul {
@@ -872,6 +1156,10 @@
       display: flex;
       flex-direction: column;
 
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+
       &-card {
         display: flex;
         flex-direction: column;
@@ -881,6 +1169,11 @@
         padding: 0;
         border-radius: 10px;
         box-shadow: 1px 0 10px rgba(0, 0, 0, 0.1);
+        transition: scale 100ms ease-out;
+
+        &:hover {
+          scale: 1.02;
+        }
 
         &-listItem {
           width: 100%;
@@ -891,6 +1184,12 @@
           padding: 16px 16px;
           box-sizing: border-box;
           border-bottom: $dividerColor 1px solid;
+
+          @media screen and (max-width: 768px) {
+            flex-direction: column;
+            padding: 0;
+            gap: 0;
+          }
 
           &:last-child {
             border: none;
@@ -904,6 +1203,20 @@
             justify-content: space-between;
             width: 50%;
             align-items: center;
+
+            @media screen and (max-width: 768px) {
+              line-height: 28px;
+              flex-direction: column;
+              width: calc(100% - 32px);
+              align-items: flex-start;
+              padding: 8px 16px;
+            }
+
+            &:first-child {
+              @media screen and (max-width: 768px) {
+                border-bottom: $dividerColor 1px solid;
+              }
+            }
 
             span {
               color: $accent;
@@ -919,23 +1232,50 @@
     &-top {
       width: calc(30% - 24px);
 
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+
       &-card {
         @extend .main-content-popular-card;
         padding: 3px 0;
         gap: 0;
 
         &-listItem {
-          @extend .main-content-popular-card-listItem;
+          width: 100%;
+          display: flex;
+          flex-direction: row;
           justify-content: space-between;
+          gap: 40px;
+          box-sizing: border-box;
+          border-bottom: $dividerColor 1px solid;
           border-bottom: none;
           padding: 3px 16px;
+
+          &:hover {
+            background-color: $backgroundGray;
+            cursor: pointer;
+          }
 
           &:last-child {
             border-bottom: none;
           }
 
           p {
+
+            padding: 0;
+            font-weight: 400;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
             width: 100%;
+
+            @media screen and (max-width: 768px) {
+              padding: 0;
+              flex-direction: row;
+              border: none;
+            }
 
             a {
               margin-left: 12px;
@@ -955,8 +1295,6 @@
             }
           }
         }
-
-
       }
     }
 
@@ -972,6 +1310,11 @@
           @extend .main-content-top-card-listItem;
           flex-direction: column;
           gap: 0;
+
+          &:hover {
+            background-color: inherit;
+            cursor: inherit;
+          }
 
           p {
             @extend .textSmall;
@@ -990,7 +1333,6 @@
     }
 
     &-faq {
-
       @extend .main-content-top;
 
       &-card {
@@ -1023,6 +1365,11 @@
             padding: 0 0 0 20px;
             margin-right: -10px;
             opacity: 60%;
+
+            &:hover {
+              background-color: inherit;
+              cursor: initial;
+            }
           }
 
           form {
@@ -1030,6 +1377,7 @@
             width: 100%;
             display: flex;
             flex-direction: row;
+            gap: 10px;
             justify-content: space-between;
             padding: 0 24px 24px 24px;
 
@@ -1105,9 +1453,18 @@
   gap: 16px;
 
   &-images {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    img {
+      @media screen and (max-width: 768px) {
+        scale: 0.8;
+
+      }
+    }
+
   }
 
   &-content {
@@ -1116,14 +1473,57 @@
     justify-content: space-between;
     gap: 20px;
 
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      gap: 0;
+    }
+
     &-item {
       width: calc(100% / 6 - (20px * 5) / 6);
       display: flex;
       flex-direction: column;
 
+      &:first-child {
+        @media screen and (max-width: 768px) {
+          border-top: $dividerColor 1px solid;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        width: calc(100% - 16px);
+        padding: 6px;
+        border-bottom: $dividerColor 1px solid;
+      }
+
+
       p {
         @extend .textSmall;
         font-weight: 500;
+
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
+
+        &:first-child {
+          @media screen and (max-width: 768px) {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &::after {
+              content: "";
+              width: 12px;
+              height: 12px;
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: contain;
+              background-image: url("https://www.svgrepo.com/show/509019/arrow-right.svg");
+            }
+
+          }
+        }
+
       }
 
       ul {
@@ -1131,10 +1531,23 @@
         margin: 12px 0;
         list-style-type: none;
 
+        @media screen and (max-width: 768px) {
+          display: none;
+
+        }
+
         li {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+
+          a {
+            color: inherit;
+
+            &::after {
+              content: "";
+            }
+          }
         }
       }
 
@@ -1154,6 +1567,10 @@
     width: 100%;
     height: 1px;
     background-color: $dividerColor;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
 
   &-contacts {
@@ -1161,13 +1578,30 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
 
     div {
 
       display: flex;
       flex-direction: row;
-      gap: 12px;
+      gap: 24px;
       padding: 0;
+
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .horizontal {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+      }
 
       button {
         display: flex;
@@ -1179,11 +1613,14 @@
         color: $selection;
         background-color: transparent;
         padding: 0 20px;
-        margin: 0 12px 0 0;
         border-radius: 5px;
+
+        transition: 100ms ease-in-out;
 
         &:hover {
           cursor: pointer;
+          background-color: $selection;
+          color: $white;
         }
 
         &:active {
@@ -1221,9 +1658,6 @@
           }
         }
       }
-
     }
-
   }
-
 }

@@ -1,10 +1,15 @@
 .wrapper {
   width: 1170px;
   margin: 0 auto;
-  @media (max-width: 1440px) {
+  @media (max-width: 1440px) and (min-width: 768px) {
     max-width: 1170px;
     width: 100%;
     margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 700px;
+    width: calc(100% - 30px);
   }
 }
 .section {

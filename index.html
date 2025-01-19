@@ -5,17 +5,50 @@
     <title>Travel Kassa</title>
     <link rel="stylesheet" href="./styles/index.css">
     <script src="./scripts/index.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
 <header class="headerSection">
     <div class="header">
-        <div>
+        <div class="header-navContainer">
+            <div class="header-navContainer-buttons">
+                <div id="language"></div>
+                <div id="burger"></div>
+            </div>
             <ul class="header-navMenu">
-                <li><a>Корпоративным клиентам</a></li>
-                <li><a class="header-navMenu-type">Авиабилеты</a></li>
-                <li><a class="header-navMenu-help">Справка</a></li>
-                <li><a class="header-navMenu-language">Русский</a></li>
+                <li id="corporateItem" class="header-navMenu-corporate"><a>Корпоративным клиентам</a></li>
+                <li id="navItem">
+                    <nav>
+                        <a class="header-navMenu-type" id="currentNavMenuItem">Авиабилеты</a>
+                        <ul>
+                            <li><a href="#">Авиабилеты</a></li>
+                            <li><a href="#">Ж/д билеты</a></li>
+                            <li><a href="#">Автобусы</a></li>
+                            <li><a href="#">Отели</a></li>
+                            <li><a href="#">Страхование</a></li>
+                        </ul>
+                    </nav>
+                </li>
+                <li id="helpItem">
+                    <a class="header-navMenu-help">Справка</a>
+                    <ul>
+                        <li><a href="">Справка</a></li>
+                        <li><a href="">Рейтинг авиакомпаний</a></li>
+                        <li><a href="">Сравнение цен</a></li>
+                        <li><a href="">Расписание рейсов</a></li>
+                        <li><a href="">Акции</a></li>
+                    </ul>
+                </li>
+                <li id="languageItem">
+                    <a class="header-navMenu-language">Русский (RU)</a>
+                    <ul>
+                        <li><a href="#">Русский (RU)</a></li>
+                        <li><a href="#">Английский (EN)</a></li>
+                        <li><a href="#">Немецкий (DE)</a></li>
+                        <li><a href="#">Казахский (KZ)</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <div class="header-title">Лучшие авиабилеты по самым низким ценам</div>
@@ -296,12 +329,12 @@
             <div class="footer-content-item">
                 <p>Страны</p>
                 <ul>
-                    <li>Испания</li>
-                    <li>Турция</li>
-                    <li>Египет</li>
-                    <li>Грузия</li>
-                    <li>Польша</li>
-                    <li>Франция</li>
+                    <li><a>Испания</a></li>
+                    <li><a>Турция</a></li>
+                    <li><a>Египет</a></li>
+                    <li><a>Грузия</a></li>
+                    <li><a>Польша</a></li>
+                    <li><a>Франция</a></li>
                 </ul>
                 <p><a>Все страны</a></p>
             </div>
@@ -309,12 +342,12 @@
             <div class="footer-content-item">
                 <p>Города</p>
                 <ul>
-                    <li>Кишинев</li>
-                    <li>Дубай</li>
-                    <li>Варшава</li>
-                    <li>Прага</li>
-                    <li>Париж</li>
-                    <li>Франкфурт</li>
+                    <li><a>Кишинев</a></li>
+                    <li><a>Дубай</a></li>
+                    <li><a>Варшава</a></li>
+                    <li><a>Прага</a></li>
+                    <li><a>Париж</a></li>
+                    <li><a>Франкфурт</a></li>
                 </ul>
                 <p><a>Все города</a></p>
             </div>
@@ -322,12 +355,12 @@
             <div class="footer-content-item">
                 <p>Направления</p>
                 <ul>
-                    <li>Кишинев - Стамбул</li>
-                    <li>Кишинев - Анталия</li>
-                    <li>Варшава - Торонто</li>
-                    <li>Варшава - Париж</li>
-                    <li>Кишинев - Тбилиси</li>
-                    <li>Варшава - Стамбул</li>
+                    <li><a>Кишинев - Стамбул</a></li>
+                    <li><a>Кишинев - Анталия</a></li>
+                    <li><a>Варшава - Торонто</a></li>
+                    <li><a>Варшава - Париж</a></li>
+                    <li><a>Кишинев - Тбилиси</a></li>
+                    <li><a>Варшава - Стамбул</a></li>
                 </ul>
                 <p><a>Все направления</a></p>
             </div>
@@ -335,12 +368,12 @@
             <div class="footer-content-item">
                 <p>Аэропорты</p>
                 <ul>
-                    <li>Ф. Шопен (Варшава)</li>
-                    <li>Франкфурт Интернешнл (Франкфурт)</li>
-                    <li>Аэропорт Кишинев (Кишинев)</li>
-                    <li>Фиумичино (Рим)</li>
-                    <li>Аэропорт Стамбула (Стамбул)</li>
-                    <li>Шарль Де Голль (Париж)</li>
+                    <li><a>Ф. Шопен (Варшава)</a></li>
+                    <li><a>Франкфурт Интернешнл (Франкфурт)</a></li>
+                    <li><a>Аэропорт Кишинев (Кишинев)</a></li>
+                    <li><a>Фиумичино (Рим)</a></li>
+                    <li><a>Аэропорт Стамбула (Стамбул)</a></li>
+                    <li><a>Шарль Де Голль (Париж)</a></li>
                 </ul>
                 <p><a>Все аэропорты</a></p>
             </div>
@@ -348,55 +381,55 @@
             <div class="footer-content-item">
                 <p>Авиакомпании</p>
                 <ul>
-                    <li>Тюркиш Эрлайнз</li>
-                    <li>Wizz Ait Украина</li>
-                    <li>Qatar Airways</li>
-                    <li>Ryanair</li>
-                    <li>Air Baltic</li>
+                    <li><a>Тюркиш Эрлайнз</a></li>
+                    <li><a>Wizz Ait Украина</a></li>
+                    <li><a>Qatar Airways</a></li>
+                    <li><a>Ryanair</a></li>
+                    <li><a>Air Baltic</a></li>
                 </ul>
                 <p><a>Все авиакомпании</a></p>
             </div>
             <div class="footer-content-item">
                 <p>Наши сервисы</p>
                 <ul>
-                    <li>Рейтинг авиакомпаний</li>
-                    <li>Сравнение цен</li>
-                    <li>Расписание рейсов</li>
-                    <li>Акции</li>
+                    <li><a>Рейтинг авиакомпаний</a></li>
+                    <li><a>Сравнение цен</a></li>
+                    <li><a>Расписание рейсов</a></li>
+                    <li><a>Акции</a></li>
                 </ul>
                 <p><a>Карта сайта</a></p>
             </div>
-
-
         </div>
 
         <div class="footer-divider"></div>
         <div class="footer-contacts">
-            <div>
+            <div class="footer-contacts-appstore">
                 <button type="button">Партнерская программа</button>
-                <button type="button" class="black">
-                    <img src="https://www.svgrepo.com/show/390295/google-play-store.svg" alt="Google Play logo">
-                    Google Play
-                </button>
-                <button type="button" class="black">
-                    <img src="https://www.svgrepo.com/show/352973/app-store.svg" alt="Apple logo">
-                    App Store
-                </button>
+                <div class="horizontal">
+                    <button type="button" class="black">
+                        <img src="https://www.svgrepo.com/show/390295/google-play-store.svg" alt="Google Play logo">
+                        Google Play
+                    </button>
+                    <button type="button" class="black">
+                        <img src="https://www.svgrepo.com/show/352973/app-store.svg" alt="Apple logo">
+                        App Store
+                    </button>
+                </div>
             </div>
             <div>
-                <button type="button" class="circle">
-                    <img src="https://www.svgrepo.com/show/494341/facebook.svg" alt="Facebook">
-                </button>
-                <button type="button" class="circle">
-                    <img src="https://www.svgrepo.com/show/521711/instagram.svg" alt="Instagram">
-                </button>
-                <button type="button" class="circle">
-                    <img src="https://www.svgrepo.com/show/336237/telegram.svg" alt="Telegram">
-                </button>
+                <div class="horizontal">
+                    <button type="button" class="circle">
+                        <img src="https://www.svgrepo.com/show/494341/facebook.svg" alt="Facebook">
+                    </button>
+                    <button type="button" class="circle">
+                        <img src="https://www.svgrepo.com/show/521711/instagram.svg" alt="Instagram">
+                    </button>
+                    <button type="button" class="circle">
+                        <img src="https://www.svgrepo.com/show/336237/telegram.svg" alt="Telegram">
+                    </button>
+                </div>
             </div>
         </div>
-
-
     </div>
 </footer>
 

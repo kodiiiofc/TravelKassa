@@ -1,3 +1,62 @@
+const headerNavMenu = document.querySelector('.header-navMenu');
+const menuItems = headerNavMenu.querySelectorAll('.header-navMenu > li')
+
+menuItems.forEach(
+    (li) => {
+        const listsInElement = li.querySelectorAll('ul');
+        li.addEventListener('mouseenter', (e) => {
+            listsInElement.forEach((element) => {
+                fadeIn(element);
+            })
+        })
+        li.addEventListener('mouseleave', (e) => {
+            listsInElement.forEach((element) => {
+                fadeOut(element);
+            })
+        })
+    }
+)
+
+const language = getById('language')
+let languageExpanded = false;
+language.addEventListener('click', (e) => {
+    if (languageExpanded) {
+        slideRight(headerNavMenu);
+    } else {
+        getById('languageItem').style.display = 'block';
+        getById('helpItem').style.display = 'none';
+        getById('navItem').style.display = 'none';
+        slideLeft(headerNavMenu);
+    }
+    languageExpanded = !languageExpanded;
+})
+
+const burger = getById('burger');
+
+let menuExpanded = false;
+
+burger.addEventListener('click', (e) => {
+    if (menuExpanded) {
+        slideRight(headerNavMenu);
+    } else {
+        getById('languageItem').style.display = 'none';
+        getById('helpItem').style.display = 'block';
+        getById('navItem').style.display = 'block';
+        slideLeft(headerNavMenu);
+    }
+    menuExpanded = !menuExpanded;
+})
+
+function slideLeft(element) {
+    element.classList.remove('slideRightAnimation');
+    element.classList.add('slideLeftAnimation');
+}
+
+function slideRight(element) {
+    element.classList.remove('slideLeftAnimation');
+    element.classList.add('slideRightAnimation');
+}
+
 const cityFromFieldContainer = document.querySelector('.header-search-input-fields-from')
 const cityToFieldContainer = document.querySelector('.header-search-input-fields-to')
 
